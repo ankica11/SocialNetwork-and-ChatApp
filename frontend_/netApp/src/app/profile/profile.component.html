@@ -1,0 +1,251 @@
+<div class="profile">
+    <!--Upper-content-->
+    <div class="upper-content">
+        <!--Side empty space-->
+        <div class="side-empty-space">
+
+        </div>
+        <!--Side empty spce end-->
+
+        <!--Center upper content-->
+        <div class="center-upper-content">
+
+            <!--Cover photo-->
+            <div class="cover-photo">
+                <img src="./assets/signup2.jpg">
+                <button *ngIf="(myProfileMode$ | async) == true">
+                    <i class="bi bi-camera-fill ps-1"></i>
+                    Change cover photo
+                </button>
+            </div>
+            <!--Cover photo end-->
+
+            <!--User info content-->
+            <div class="user-info-content">
+                <!--Profile pic-->
+                <div class="profile-pic">
+                    <img [src]="(selectedUser$ | async).avatar" class="rounded-circle" alt="">
+                    <button *ngIf="(myProfileMode$ | async)==true" (click)="openProfilePhotoModal(content)"><i class="bi bi-camera-fill h5"></i></button>
+                </div>
+                <!--Profile pic end-->
+
+                <!--Profile name friends-->
+                <div class="profile-name-friends">
+                    <!--User name-->
+                    <div class="user-name">
+                        <h3>{{(selectedUser$ | async).name}}</h3>
+                    </div>
+                    <!--User name end-->
+                    <!--Friends count-->
+                    <div class="friends-count">
+                        <span style="font-weight: bold; color: #979797">Friends: 9</span>
+                    </div>
+                    <!--Friends count end-->
+                    <!--Friends pic list-->
+                    <div class="friends-pic-list-wrapper">
+                        <div class="friends-pic-list">
+                            <img *ngFor="let pic of pics" src={{pic}} class="rounded-circle friend-pic">
+                      
+                        </div>
+                       <div class="friends-pic-list-space">
+
+                       </div>
+                    </div>
+                    <!--Friends pic list end-->
+                </div>
+                <!--Profile name friends end-->
+
+                <!--Edit profile controls-->
+                <div class="edit-profile-controls">
+                    <div class="add-story">
+                        <button class="btn btn-primary add-btn" *ngIf="(myProfileMode$ | async) == true">
+                            <i class="bi bi-plus-circle-fill"></i>
+                            Add to story
+                        </button>
+                        <button class="btn btn-primary add-btn" *ngIf="(myProfileMode$ | async) == false && (friendsStatus$ | async) == Status.NONE"
+                        (click)="addFriend()">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Add friend
+                        </button>
+                        <button class="btn btn-primary edit-profile" *ngIf="(myProfileMode$ | async) == false && (friendsStatus$ | async) == Status.FRIENDS"
+                        (click)="removeFriend()">
+                            <i class="bi bi-person-check-fill"></i>
+                            Friends
+                        </button>
+                        <button class="btn btn-primary edit-profile" 
+                       
+                        *ngIf="(myProfileMode$ | async) == false && (friendsStatus$ | async) == Status.PENDING_SENT"
+                        (click)="deleteRequest()">
+                            <i class="bi bi-person-check-fill"></i>
+                            <span>Sent request</span>
+                        </button>
+                        <button class="btn btn-primary edit-profile" *ngIf="(myProfileMode$ | async) == false && (friendsStatus$ | async) == Status.PENDING_RECEIVED"
+                        (click)="acceptRequest()">
+                            <i class="bi bi-person-check-fill"></i>
+                            Accept request
+                        </button>
+                    </div>
+                    <div class="change-profile">
+                        <button class="edit-profile" *ngIf="(myProfileMode$ | async) == true ">
+                            <i class="bi bi-pencil-fill"></i>
+                            Edit profile
+                        </button>
+                        <button class="send-message" *ngIf="(myProfileMode$ | async) == false">
+                            <i class="bi bi-chat-dots-fill"></i>
+                            Send message
+                        </button>
+                    </div>
+
+                </div>
+                <!--Edit profile controls end-->
+            </div>
+            <!--User info content end-->
+
+            <!--Profile navigation-->
+            <div class="profile-navigation">
+                <!--Navigation Links-->
+                <div class="navigation-items">
+                    <div class="navigation-item" id="posts">
+                        <div class="space"></div>
+                        <div class="navigation-link"
+                            >
+                            <button [class.navigation-link-active]="activeComponent=='posts'"
+                            routerLink="posts"
+                            >Posts</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border-active" id="border">
+
+                        </div>
+                    </div>
+                    <div class="navigation-item" id="info">
+                        <div class="space"></div>
+                        <div class="navigation-link">
+                            <button [class.navigation-link-active]="activeComponent=='info'"
+                            routerLink="about/overview">About</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border" id="border">
+
+                        </div>
+                    </div>
+                    <div class="navigation-item" id="friends">
+                        <div class="space"></div>
+                        <div class="navigation-link">
+                            <button [class.navigation-link-active]="activeComponent=='friends'"
+                            routerLink="friends">Friends</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border" id="border">
+
+                        </div>
+                    </div>
+                    <div class="navigation-item" id="photos">
+                        <div class="space"></div>
+                        <div class="navigation-link">
+                            <button [class.navigation-link-active]="activeComponent=='photos'">Photos</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border" id="border">
+
+                        </div>
+                    </div>
+                    <div class="navigation-item" id="videos">
+                        <div class="space"></div>
+                        <div class="navigation-link">
+                            <button [class.navigation-link-active]="activeComponent=='videos'">Videos</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border" id="border">
+
+                        </div>
+                    </div>
+                    <div class="navigation-item" id="loc">
+                        <div class="space"></div>
+                        <div class="navigation-link">
+                            <button [class.navigation-link-active]="activeComponent=='loc'">Check-ins</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border" id="border">
+
+                        </div>
+                    </div>
+                    <div class="navigation-item" id="more">
+                        <div class="space"></div>
+                        <div class="navigation-link">
+                            <button [class.navigation-link-active]="activeComponent=='more'">More</button>
+                        </div>
+                        <div class="space"></div>
+                        <div class="item-border" id="border">
+
+                        </div>
+                    </div>
+                </div>
+                <!--Navigation links end-->
+
+                <!--More actions-->
+                <div class="more-actions">
+                    <button>
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                </div>
+                <!--More actions end-->
+            </div>
+            <!--Profile navigation end-->
+
+        </div>
+        <!--Center upper content end-->
+
+        <!--Side empty space-->
+        <div class="side-empty-space">
+
+        </div>
+        <!--Side empty space end-->
+
+    </div>
+    <!--Upper-content End-->
+
+    <!--Bottom-content-->
+    <div class="bottom-content">
+        <div class="side-empty-space">
+
+        </div>
+        <div class="center-bottom-content">
+            <!--<app-profile-posts *ngIf="activeComponent=='posts'"></app-profile-posts>
+            <app-user-about *ngIf="activeComponent=='info'"></app-user-about> -->
+            <router-outlet></router-outlet>
+        </div>
+        <div class="side-empty-space">
+
+        </div>
+   </div>
+    <!--Bottom-content End-->
+</div>
+
+
+<!--Photo upload modal-->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Change profile photo</h4>
+      <button type="button" class="btn-close custom-close rounded-circle" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body modal-body-custom">
+        <div class="form-group py-2">
+            <label class="btn btn-primary" style="background-color: #FF30C9 ;">
+                <i class="bi bi-plus-lg"></i>
+            Upload photo
+            <input type="file"
+                   id="file"
+                   (change)="profilePhotoPreview($event)"
+                   style="display: none;"
+                   >
+            </label>
+        </div>
+        <img [src]="profilePreview" class="preview-photo" *ngIf="profilePreview">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cross click')">Cancel</button>
+      <button type="button" class="btn btn-outline-dark" (click)="saveProfilePhoto()">Save</button>
+
+    </div>
+  </ng-template>

@@ -1,0 +1,265 @@
+<div class="start">
+  <!--Navbar mobile-->
+  <nav class=" navbar-mobile">
+    <a href="#" class="navbar-brand">
+      <img src="./assets/logo4.png" width="50" height="50" alt="" class="d-inline-block mx-2">
+      <span class="font-custom">NetYou</span>
+    </a>
+    <div class="right-links-mobile align-self-center">
+      <button>
+      <i class="bi bi-search h4 px-2"></i>
+      </button>
+      <button>
+      <i class="bi bi-chat-dots h4 px-2"></i>
+      </button>
+    </div>
+  </nav>
+  <!--Navbar mobile end-->
+  <!--Navbar-->
+  <nav class="bg-light navbar-custom">
+    <div
+      class="container-fluid d-sm-flex align-items-center justify-content-between nav-custom"
+    >
+      <div class="left-nav">
+      <!--Brand-->
+      <a href="#" class="navbar-brand">
+        <img src="./assets/logo.png" height="60" />
+      </a>
+      <!--Brand End-->
+
+      <!--Search-->
+      <form class="py-2">
+        <div class="form-field-custom d-flex">
+          <i class="bi bi-search px-2 ps-3 align-self-center"></i>
+          <input
+            type="text"
+            class="form-control"
+            type="search"
+            placeholder="Search NetYou"
+            aria-label="Search"
+            (keyup.enter)="search($event)"
+          />
+        </div>
+      </form>
+      <!--Search End-->
+</div>
+      <!--Nav Links-->
+
+      <div class="d-flex nav-links-custom">
+
+        <!--Home-->
+        <div class="nav-item-custom-border">
+          <div
+            class="nav-item-custom px-md-5 px-sm-4 px-3"
+            id="home"
+            [class.active]="activeComponent == 'home'"
+          >
+            <button class="nav-link-custom"
+                    routerLink="home">
+              <i
+                class="bi bi-house-door-fill h4"
+                [class.active-icons]="activeComponent == 'home'"
+              ></i>
+            </button>
+          </div>
+          <div [class.border-custom]="activeComponent == 'home'"></div>
+        </div>
+        <!--Home End-->
+
+        <!--Play-->
+        <div class="nav-item-custom-border">
+          <div
+            class="nav-item-custom px-md-5 px-sm-4 px-3"
+            id="play"
+            [class.active]="activeComponent == 'play'"
+          >
+            <button class="nav-link-custom"
+                    routerLink="play">
+              <i
+                class="bi bi-collection-play h4"
+                [class.active-icons]="activeComponent == 'play'"
+              ></i>
+            </button>
+          </div>
+          <div [class.border-custom]="activeComponent == 'play'"></div>
+        </div>
+        <!--Play End-->
+
+        <!--Shop-->
+        <div class="nav-item-custom-border">
+          <div
+            class="nav-item-custom px-md-5 px-sm-4 px-3"
+            id="shop"
+            [class.active]="activeComponent == 'shop'"
+          >
+            <button class="nav-link-custom"
+                    routerLink="shop">
+              <i
+                class="bi bi-shop h4"
+                [class.active-icons]="activeComponent == 'shop'"
+              ></i>
+            </button>
+          </div>
+          <div [class.border-custom]="activeComponent == 'shop'"></div>
+        </div>
+        <!--Shop End-->
+
+        <!--People-->
+        <div class="nav-item-custom-border">
+          <div
+            class="nav-item-custom px-md-5 px-sm-4 px-3"
+            id="people"
+            [class.active]="activeComponent == 'people'"
+          >
+            <button class="nav-link-custom"
+                    routerLink="people">
+              <i
+                class="bi bi-people-fill h4"
+                [class.active-icons]="activeComponent == 'people'"
+              ></i>
+            </button>
+          </div>
+          <div [class.border-custom]="activeComponent == 'people'"></div>
+        </div>
+        <!--People End-->
+
+        <!--App-->
+        <div class="nav-item-custom-border">
+          <div
+            class="nav-item-custom px-md-5 px-sm-4 px-3"
+            id="app"
+            [class.active]="activeComponent == 'app'"
+          >
+            <button class="nav-link-custom"
+                    routerLink="app_store">
+              <i
+                class="bi bi-app-indicator h4"
+                [class.active-icons]="activeComponent == 'app'"
+              ></i>
+            </button>
+          </div>
+          <div [class.border-custom]="activeComponent == 'app'"></div>
+        </div>
+      
+      <!--App End-->
+      <!--More-->
+      <div class="nav-item-custom-border more">
+        <div
+          class="nav-item-custom px-md-5 px-sm-4 px-3"
+          id="more"
+          [class.active]="activeComponent == 'more'"
+        >
+          <button class="nav-link-custom">
+            <i
+              class="bi bi-list h4"
+              [class.active-icons]="activeComponent == 'more'"
+            ></i>
+          </button>
+        </div>
+        <div [class.border-custom]="activeComponent == 'more'"></div>
+      </div>
+      <!--More End-->
+</div>
+
+      <!--Nav Links End-->
+
+      <!--Right Links-->
+      <div class="right-links me-2">
+        <div class="d-flex profile-nav px-2" 
+        [class.profile-active-all]="activeComponent=='profile' && (myProfileMode$ | async)==true"
+        >
+            <button style="padding-top: 5px; padding-bottom: 5px" (click)="showMyProfile()" [routerLink]="['profile', loggedUser.username]">
+            <img [src]="loggedUser.avatar" class="rounded-circle mx-1" alt="" width="30" height="30" style="object-fit: cover;">
+            <span style="font-size: 0.9rem; font-weight: bold;" [class.profile-active]="activeComponent == 'profile' && (myProfileMode$ | async)==true">{{loggedUser.name}}</span>
+            </button>
+          </div>
+        <div class="button-wrap">
+        <button class="right-link-custom"><i class="bi bi-plus-circle-fill h6"></i></button>
+        </div>
+        <div class="button-wrap">
+        <a class="right-link-custom" routerLink="chat"><i class="bi bi-chat-dots-fill h6"></i></a>
+        </div>
+        
+        <div class="button-wrap">
+        <button class="right-link-custom"><i class="bi bi-bell-fill h6"></i></button>
+        </div>
+        <div class="button-wrap">
+        <button class="right-link-custom"><i class="bi bi-caret-down-fill h6"></i></button>
+        </div>
+    </div>
+      <!--Right Links End-->
+    </div>
+</nav>
+  <!--Navbar End-->
+
+  <div class="container-fluid d-flex">
+  
+  
+  <!--Left Sidebar-->
+
+  <!--Left controls tablet-->
+  <div class="right-links-tablet px-1">
+    
+    <button [routerLink]="['profile', loggedUser.username]">
+    <img [src]="loggedUser.avatar" class="rounded-circle mx-1" alt="" width="40" height="40">
+    </button>  
+    
+    <div>
+      <button class="right-link-custom"><i class="bi bi-search h2"></i></button>
+    </div>
+    <div>
+    <button class="right-link-custom"><i class="bi bi-plus-circle h2"></i></button>
+    </div>
+    <div>
+    <button class="right-link-custom" routerLink="chat"><i class="bi bi-chat-dots h2"></i></button>
+    </div>
+    <div>
+    <button class="right-link-custom"><i class="bi bi-bell h2"></i></button>
+    </div>
+    <div>
+      <button class="right-link-custom"><i class="bi bi-gear h2"></i></button>
+    </div>
+    <div>
+    <button class="right-link-custom"><i class="bi bi-caret-down h2"></i></button>
+    </div>
+</div>
+
+  
+
+  <!--Left controls tablet End-->
+  <!--Left Sidebar End-->
+
+  <!--Main-->
+  
+ 
+  <div class="content">
+  
+    <!--
+    <app-homepage *ngIf="activeComponent=='home'"></app-homepage>
+
+   
+    <app-play *ngIf="activeComponent == 'play'"></app-play>
+
+
+    <app-shop *ngIf="activeComponent == 'shop'"></app-shop>
+
+
+    <app-people *ngIf="activeComponent == 'people'"></app-people>
+
+   
+    <app-appstore *ngIf="activeComponent == 'app'"></app-appstore>
+
+    
+    <app-profile *ngIf="activeComponent == 'profile'"></app-profile>
+   
+    <app-search *ngIf="activeComponent == 'search'"></app-search> -->
+    <router-outlet></router-outlet>
+  </div>
+  
+  <!--Main End-->
+
+  <!--Right Sidebar-->
+  <!--Right Sidebar End-->
+</div>
+</div>
+<!--Start End-->

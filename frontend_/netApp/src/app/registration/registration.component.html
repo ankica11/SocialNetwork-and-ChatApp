@@ -1,0 +1,221 @@
+<section id="signUp" class="center-content">
+  <div class="container align-items-center">
+    <div class="row">
+      
+      <div class="col-sm-10 col-md-6 col-lg-4 form-custom center-content mx-auto" id="form-custom">
+
+         
+          <!--Avatar--> 
+          <button
+          style="background-color: transparent !important; border: 0 !important;  align-content: center; align-self: center;"
+          (click)="addImage()"
+          class="mb-4 mt-2">
+          <img src="./assets/logo4.png" class="rounded-circle" alt="" height="80" width="80">
+           </button>
+           <!--Avatar End-->
+           <div class="no-signup" id="success-signup">Successfully signed up!
+            <div>Go back to <a routerLink="/" >Sign in.</a></div>
+           </div>
+   
+          <!--SignUp Form-->
+          <form style="display: flex; flex-direction: column;"
+                
+                id="signupForm"
+                [formGroup]="signupForm"
+                (ngSubmit)="onSubmit()"
+                novalidate>
+           
+          
+                  
+                    <!--First Name Last Name-->
+                    <div class="d-flex mx-5 mb-3"
+                    >
+                        <!--First Name-->
+                        <div class="form-group"
+                        >
+                            <div class="d-flex form-field-custom me-2"
+                            [class.form-field-custom-errors]="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)"
+                        >
+                            <i class="bi bi-person-badge-fill icons-custom"></i>
+                            <input 
+                            id="firstName"
+                            formControlName="firstName"
+                            type="text" 
+                            class="form-control" 
+                            placeholder="First name" />
+                            </div>
+                            <small *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)"
+                            class="text-danger errors"
+                            role="alert">
+                                <small *ngIf="signupForm.controls['firstName'].errors['required']" class="errors">
+                                  First name is required.
+                                </small>
+                            </small>
+                            <small id="firstname_err_server" class="errors" ><small></small></small>
+  
+                            
+                        </div>
+                        
+                        <!--First Name End-->
+                        <!--Last Name-->
+                        <div class="form-group">
+                        <div class=" d-flex form-field-custom ms-2"
+                        [class.form-field-custom-errors]="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)">
+                        <input 
+                            id="lastName"
+                            formControlName="lastName"
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Last name" />
+                        </div>
+                        <small *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)"
+                        class="text-danger errors ms-2"
+                        role="alert">
+                            <small *ngIf="signupForm.controls['lastName'].errors['required']" class="errors"> 
+                                Last name is required.
+                            </small>
+                        </small>
+                        <small id="lastname_err_server"  class="errors" ><small></small></small>
+  
+                            
+                        </div>
+              <!--Last Name End-->
+            </div>
+            <!--First Name Last Name End-->
+            
+            <!--Email-->
+            <div class="form-group mx-5 mb-3"
+            >
+                <div class="d-flex form-field-custom"
+                [class.form-field-custom-errors]="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
+                <i class="bi bi-envelope-fill icons-custom"></i>
+                <input 
+                id="email"
+                formControlName="email"
+                type="text" 
+                class="form-control" 
+                placeholder="Email"
+                
+                />
+                </div>
+                <small *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)"
+                class="text-danger errors"
+                role="alert">
+                    <small *ngIf="signupForm.controls['email'].errors['required']" class="errors">
+                        Email is required.
+                    </small>
+                    <small *ngIf="signupForm.controls['email'].errors['email']" class="errors">
+                        Invalid email.
+                    </small>
+                </small>
+                <small id="email_err_server"  class="errors" ><small></small></small>
+  
+                
+            </div>
+            <!--Email End-->
+            
+           
+            <!--Username-->
+            <div class="form-group mb-3  mx-5">
+                <div class="d-flex form-field-custom"
+                [class.form-field-custom-errors]="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)">
+                <i class="bi bi-person-fill icons-custom"></i>
+                <input 
+
+                id="username"
+                formControlName="username"
+                type="text" 
+                class="form-control" 
+                placeholder="Username" />
+                </div>
+                <small *ngIf="signupForm.controls['username'].invalid && (signupForm.controls['username'].dirty || signupForm.controls['username'].touched)" class="errors">
+                    <small *ngIf="signupForm.controls['username'].errors['required']">Username is required.</small>
+                    <small *ngIf="signupForm.controls['username'].errors['usernameExists']">Username already exists.</small>
+                    
+                </small>
+                <small id="username_err_server"  class="errors" ><small></small></small>
+  
+            </div>
+            <!--Username End-->
+            
+            <!--Password-->
+            <div class="form-group mb-3 mx-5">
+            <div class=" d-flex form-field-custom"
+            [class.form-field-custom-errors]="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
+            <i class="bi bi-key-fill icons-custom "></i>
+            <input
+            id="password"
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            />
+            <i class="bi bi-eye icons-custom pe-1" id="show_pass" role="button" *ngIf="hidden" (click)="toggle('password')"></i>
+            <i class="bi bi-eye-slash pe-1 icons-custom" id="hide_pass" role="button" *ngIf="!hidden" (click)="toggle('password')"></i>
+        </div>
+        <small *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="errors">
+            <small *ngIf="signupForm.controls['password'].errors['required']">Password is required.</small>
+        </small>
+        
+        <div class="d-flex mt-2 justify-content-center align-items-center" id="strength_checker">
+        <div class="progress" style="height: 4px; display: none;" id="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small id="pass_err" style="flex:1; text-align: right;" ><small></small></small>
+        </div>
+        <small id="pass_err" class="errors" ><small></small></small>
+      
+        </div>
+        <!--Password End-->
+        
+        <!--Confirm password-->
+        <div class="form-group mb-5 mx-5"
+        >
+            <div class=" d-flex form-field-custom"
+            [class.form-field-custom-errors]="signupForm.controls['confirmPassword'].invalid && (signupForm.controls['confirmPassword'].dirty || signupForm.controls['confirmPassword'].touched)">
+           
+            <i class="bi bi-key-fill icons-custom"></i>
+            <input 
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            type="password" 
+            class="form-control" 
+            placeholder="Confirm password"
+            />
+            <i class="bi bi-eye icons-custom pe-1" id="show_pass" role="button" *ngIf="hidden2" (click)="toggle('confirmPassword')"></i>
+            <i class="bi bi-eye-slash pe-1 icons-custom" id="hide_pass" role="button" *ngIf="!hidden2" (click)="toggle('confirmPassword')"></i>
+            </div>
+            <small *ngIf="signupForm.controls['confirmPassword'].invalid && (signupForm.controls['confirmPassword'].dirty || signupForm.controls['confirmPassword'].touched)" class="errors">
+                <small *ngIf="signupForm.controls['confirmPassword'].errors['required']">You need to confirm password.</small>
+            </small>
+            <small id="confirm_err"  class="errors"><small></small></small>
+            
+        </div>
+        <!--Confirm password End-->
+        <!--Submit button-->
+        <div class="form-group d-grid mx-5">
+            <button 
+            type="submit"
+            id="submit_button"
+            class="btn btn-primary btn-block rounded-pill mb-4"
+            role="submit"
+            [disabled]="signupForm.invalid || signupForm.pristine || disabled"
+            
+            >
+            Sign up
+        </button>
+       
+    </div>
+    <!--Submit button End-->
+    
+        
+
+        </form>
+        <!--SignUp Form-->
+        
+      </div>
+      
+    </div>
+   
+  </div>
+</section>

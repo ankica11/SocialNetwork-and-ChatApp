@@ -1,0 +1,62 @@
+
+
+:host{ flex: 1; }
+
+
+.user-about{
+    flex: 1;
+    display: flex;
+    width: 100% !important;
+    background-color: white;
+    padding: 0 !important;
+   
+    min-width: 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    
+}
+
+
+
+.sidebar{
+    
+    flex: 1;
+    display: flex;
+    flex-direction: column !important;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    margin-left: 10px;
+    border-right: 1px solid lightgray;
+    padding-right: 7px;
+}
+
+.sidebar > h4{
+  
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.active{
+    background-color: #FFD5F5 !important;
+    color: #FF30C9 !important;
+}
+
+.sidebar-nav-link{
+    background-color: transparent;
+    border: 0 !important;
+    text-align: left;
+
+    
+    color: grey;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 7px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+
+}
+
+.content{
+    flex: 3;
+}

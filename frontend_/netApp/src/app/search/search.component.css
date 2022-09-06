@@ -1,0 +1,158 @@
+*{
+    box-sizing: border-box;
+}
+.search{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #ECECEC;
+    margin-top: 60px;
+}
+
+.filters{
+    display: inline-grid;
+
+    row-gap: 5px;
+    cursor: pointer;
+    
+}
+
+.filters>div{
+    
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    
+
+}
+
+.filters>div:hover{
+    background-color: #d0d0d0;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    border-radius: 10px;
+}
+
+.left-sidebar{
+    background-color: white;
+    flex: 1;
+    display: grid;
+    grid-template-rows: 10% 60%;
+    padding-left: 20px;
+    padding-right: 20px;
+    row-gap: 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+.heading h3{
+    font-weight: bold;
+}
+.results{
+    margin-top: 3%;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.result-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result{
+    background-color: white;
+    width: 60%;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+
+
+
+.profile-photo{
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    
+    
+}
+
+.search-profile-pic{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    
+}
+
+.search-profile-pic:hover{
+    filter: brightness(60%)
+}
+
+.profile-info{
+    flex: 5;
+    display:flex;
+    flex-direction: column;
+}
+
+.mutuals{
+    padding-top: 15px;
+    display: flex;
+}
+
+.mutuals > button{
+  
+  
+    margin-right: -7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+
+}
+.mutuals > button > img{
+    width: 27px;
+    height: auto;
+    border: 3px solid white !important;
+
+}
+
+.action{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn{
+
+    background-color: #d0d0d0 !important;
+    border-radius: 5px;
+    color: black !important;
+    border: 0 !important;
+    font-size: small;
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+.add-btn{
+    background-color: #FFDBFE !important;
+    border-radius: 5px;
+    color: #EF2DE2 !important;
+    border: 0 !important;
+    font-size: small;
+    font-weight: bold;
+    
+}

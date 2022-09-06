@@ -1,0 +1,62 @@
+app-profile-friends{
+    width: 100% !important;
+
+    
+}
+:host{ flex: 1; }
+
+.friends{
+    display: flex;
+    width: 100% !important;
+    background-color: white;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: 0;
+    margin-bottom: 30px !important;
+}
+
+.friends-container{
+    width: 100% !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5%;
+    row-gap: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    
+}
+
+.friend-item{
+display: flex;
+
+}
+
+.friend-item > img{
+   
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 7px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 7px -1px rgba(0,0,0,0.75);
+}
+
+.friend-item > span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    padding-left: 20px;
+    flex: 4;
+    font-size: 0.9rem;
+}
+
+.friend-item .friend-actions{
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

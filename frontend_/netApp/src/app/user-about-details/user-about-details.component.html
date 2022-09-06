@@ -1,0 +1,245 @@
+<div class="details">
+
+    <div class="details-section">
+    <span>About you</span>
+    
+    
+    <div class="accordion-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.about==null)">
+      <button class="accordion" (click)="showForm($event)">
+          <i class="bi bi-plus-circle h5"></i> 
+          <span style="padding-left: 5px;">Add something about you</span>
+
+      </button>
+      <div class="panel">
+          <form
+          id="aboutForm"
+          [formGroup]="aboutForm"
+          (ngSubmit)="setAbout()"
+          novalidate>
+          <div class="d-grid gap-2">
+            <div class="d-grid gap-1 form-group pb-3  input-custom">
+              <div class="legend-label" [class.legend-label-errors]="about.invalid && (about.dirty || about.touched) &&  about.errors?.['required']">About</div>
+          
+              
+                <textarea
+                      class="form-control"
+                      id="about"
+                      formControlName="about"
+                      name="about"
+                      placeholder="About"
+                      rows="5"
+                      (keyup)="characters_counter($event)"
+                     
+                      [class.input-errors]="about.invalid && (about.dirty || about.touched) && about.errors?.['required']">
+                </textarea>
+          
+                <small *ngIf="about.invalid && (about.dirty || about.touched)">
+                    <small style="color: rgb(251, 96, 96)" *ngIf="about.errors?.['required']">Field is required.</small>
+              </small>
+                <div class="progress">
+                  <svg class="progress-circle" width="40px" height="40px" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="progress-circle-back"
+                            cx="20" cy="20" r="15"></circle>
+                    <circle class="progress-circle-prog"
+                            cx="20" cy="20" r="15"></circle>
+                    
+                </svg>
+                <div class="characters-left"></div>
+                </div>
+                
+          
+              </div>
+           
+            <div class="form-group save-btn">
+              <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+              <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+              [disabled]="aboutForm.invalid || aboutForm.pristine">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.about !=null">
+    <div class="user-info-info">
+         <span>{{(selectedUser$ | async).user_info.about}}</span>
+        </div>
+        <div class="user-info-controls">
+          <button><i class="bi bi-pen h5"></i></button>
+        </div>
+</div>
+<div class="user-info">
+    <div class="user-info-info">
+    
+    <span *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.about !=null">
+  <span>{{(selectedUser$ | async).user_info.about}}</span>
+    </span>
+    <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.about !=null)">
+      No items to show
+      </span>
+    
+    </div>
+    
+</div>
+    
+    </div>
+    
+    
+    <div class="details-section">
+    <span>
+        Other names
+    </span>
+    <div class="accordion-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.nickname==null)">
+      <button class="accordion" (click)="showForm($event)">
+          <i class="bi bi-plus-circle h5"></i> 
+          <span style="padding-left: 5px;">Add a nickname</span>
+
+      </button>
+      <div class="panel">
+          <form
+          id="nicknameForm"
+          [formGroup]="nicknameForm"
+          (ngSubmit)="setNickname()"
+          novalidate>
+          <div class="d-grid gap-2">
+            <div class="d-grid gap-1 form-group pb-3  input-custom">
+              <div class="legend-label" [class.legend-label-errors]="nickname.invalid && (nickname.dirty || nickname.touched) &&  nickname.errors?.['required']">Nickname</div>
+    
+                <input type="text" 
+                      class="form-control"
+                      id="nickname"
+                      formControlName="nickname"
+                      name="nickname"
+                      placeholder="Nickname"
+                     
+                      [class.input-errors]="nickname.invalid && (nickname.dirty || nickname.touched) && nickname.errors?.['required']">
+
+                <small *ngIf="nickname.invalid && (nickname.dirty || nickname.touched)">
+                    <small style="color: rgb(251, 96, 96)" *ngIf="nickname.errors?.['required']">Nickname is required.</small>
+              </small>
+            </div>
+            <div class="form-group save-btn">
+              <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+              <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+              [disabled]="nicknameForm.invalid || nicknameForm.pristine">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.nickname !=null">
+    <div class="user-info-info" style="display: flex; flex-direction:column">
+        <span>{{(selectedUser$ | async).user_info.nickname}}</span>
+        <small>Nickname</small>  
+      </div>
+        <div class="user-info-controls">
+          <button><i class="bi bi-pen h5"></i></button>
+        </div>
+</div>
+<div class="user-info">
+    <div class="user-info-info">
+     
+    <span 
+    style="display: flex; flex-direction:column"
+    *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.nickname !=null">
+     <span>{{(selectedUser$ | async).user_info.nickname}}</span>
+     <small>Nickname</small>
+    </span>
+    <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.nickname !=null)">
+      No items to show
+      </span>
+    
+    </div>
+    
+</div>
+    
+    
+    
+   
+    </div>
+    
+    <div class="details-section">
+    <span>Favorite quotes</span>
+    
+    <div class="accordion-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.favQuotes==null)">
+      <button class="accordion" (click)="showForm($event)">
+          <i class="bi bi-plus-circle h5"></i> 
+          <span style="padding-left: 5px;">Add favorite quotes</span>
+
+      </button>
+      <div class="panel">
+          <form
+          id="quoteForm"
+          [formGroup]="quoteForm"
+          (ngSubmit)="setQuotes()"
+          novalidate>
+          <div class="d-grid gap-2">
+            <div class="d-grid gap-1 form-group pb-3  input-custom">
+              <div class="legend-label" [class.legend-label-errors]="quotes.invalid && (quotes.dirty || quotes.touched) &&  quotes.errors?.['required']">Quotes</div>
+          
+              
+                <textarea
+                      class="form-control"
+                      id="quotes"
+                      formControlName="quotes"
+                      name="quotes"
+                      placeholder="Quotes"
+                      rows="5"
+                      (keyup)="characters_counter($event)"
+                     
+                      [class.input-errors]="quotes.invalid && (quotes.dirty || quotes.touched) && quotes.errors?.['required']">
+                </textarea>
+          
+                <small *ngIf="quotes.invalid && (quotes.dirty || quotes.touched)">
+                    <small style="color: rgb(251, 96, 96)" *ngIf="quotes.errors?.['required']">Field is required.</small>
+              </small>
+                <div class="progress">
+                  <svg class="progress-circle" width="40px" height="40px" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="progress-circle-back"
+                            cx="20" cy="20" r="15"></circle>
+                    <circle class="progress-circle-prog"
+                            cx="20" cy="20" r="15"></circle>
+                    
+                </svg>
+                <div class="characters-left"></div>
+                </div>
+                
+          
+              </div>
+           
+            <div class="form-group save-btn">
+              <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+              <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+              [disabled]="quoteForm.invalid || quoteForm.pristine">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.favQuotes !=null">
+    <div class="user-info-info">
+         <span>{{(selectedUser$ | async).user_info.favQuotes}}</span>
+        </div>
+        <div class="user-info-controls">
+          <button><i class="bi bi-pen h5"></i></button>
+        </div>
+</div>
+<div class="user-info">
+    <div class="user-info-info">
+    
+    <span *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.favQuotes !=null">
+  <span>{{(selectedUser$ | async).user_info.favQuotes}}</span>
+    </span>
+    <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.favQuotes !=null)">
+      No items to show
+      </span>
+    
+    </div>
+    
+</div>
+    
+    
+    
+    </div>
+    
+    
+    </div>

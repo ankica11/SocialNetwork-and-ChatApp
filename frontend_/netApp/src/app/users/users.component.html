@@ -1,0 +1,24 @@
+<div class="d-grid gap-3">
+<div class="d-grid">
+    <h1>User:</h1>
+    
+    <button class="btn btn-primary btn-block" (click)="get_all()">Get all</button>
+</div>
+<div *ngFor="let user of users" class="d-grid gap-2">
+    <span>Username: {{user.username}}</span>
+    <span>Password: {{user.password}}</span>
+    <span>Name: {{user.name}}</span>
+   
+    <span>Phone: {{user.phone}}</span>
+    <span>Email: {{user.email}}</span>
+    <span>Created at: {{user.created_at | date:'dd-MM-yyyy hh:mm:ss a'}}</span>
+
+</div>
+<div class="alert alert-danger" *ngIf="message">
+    {{message}}
+</div>
+<button *ngIf="access_token_expired" class="btn btn-primary" [disabled]="refresh_token_expired">Refresh token</button>
+</div>
+
+
+

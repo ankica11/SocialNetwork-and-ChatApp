@@ -1,0 +1,79 @@
+<div class="friends">
+    <div class="main-nav">
+        
+        <div class="main-nav-nav">
+            <h3>Friends</h3>
+           
+            <button
+            [class.active] = "activeChild == 'friends' || activeChild=='people'"
+            routerLink="friends" role="button" (click)="setActive()"
+            >
+                <span class="btn-icon">
+                <i class="bi bi-person-lines-fill h4 pe-3" 
+                [class.btn-icon-active] = "activeChild == 'friends' || activeChild=='people'"></i>
+                <span>All Friends</span>
+                </span>
+                <i class="bi bi-chevron-right btn-right h4"
+                [class.btn-right-active] = "activeChild == 'friends' || activeChild=='people'"></i>
+            </button>
+            <button
+            routerLink="friendRequests" role="button" (click)="setActive()"
+            [class.active]="activeChild=='friendRequests'">
+                <span class="btn-icon">
+                <i class="bi bi-person-plus-fill h4 pe-3" 
+                [class.btn-icon-active]="activeChild=='friendRequests'"
+                ></i>
+                <span>Friend Requests</span>
+                </span>
+                <i class="bi bi-chevron-right btn-right h4"
+                [class.btn-right-active] = "activeChild == 'friendRequests'"></i>
+            </button>
+            <button
+            routerLink="suggestions" role="button" (click)="setActive()"
+            [class.active]="activeChild=='suggestions'">
+                <span class="btn-icon">
+                <i class="bi bi-person-plus-fill h4 pe-3" 
+                [class.btn-icon-active]="activeChild=='suggestions'"
+                ></i>
+                <span>Suggestions</span>
+                </span>
+                <i class="bi bi-chevron-right btn-right h4"
+                [class.btn-right-active] = "activeChild == 'suggestions'"></i>
+            </button>
+            <button
+            routerLink="sentRequests" role="button" (click)="setActive()"
+            [class.active]="activeChild=='sentRequests'">
+                <span class="btn-icon">
+                <i class="bi bi-person-check-fill h4 pe-3" 
+                [class.btn-icon-active]="activeChild=='sentRequests'"></i>
+                <span>Sent Requests</span>
+                </span>
+                <i class="bi bi-chevron-right btn-right h4"
+                [class.btn-right-active] = "activeChild == 'sentRequests'"></i>
+            </button>
+            <button
+            routerLink="birthdays" role="button" (click)="setActive()"
+            [class.active]="activeChild=='birthdays'">
+                <span class="btn-icon">
+                <i class="bi bi-gift-fill h4 pe-3" 
+                [class.btn-icon-active]="activeChild=='birthdays'"></i>
+                <span>Birthdays</span>
+                </span>
+                <i class="bi bi-chevron-right btn-right h4"
+                [class.btn-right-active] = "activeChild == 'birthdays'"
+                ></i>
+            </button>
+        </div>
+        <div class="main-nav-empty">
+
+        </div>
+
+    </div>
+    <div class="content">
+     <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,66 @@
+<div class="relationship">
+
+    <div class="relationship-section">
+    <span>Relationship</span>
+    
+    <div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.relationshipStatus==null)">
+    <button class="accordion" (click)="showForm($event)">
+      <i class="bi bi-plus-circle h5"></i> 
+      <span style="padding-left: 5px;">Add a relationship status</span>
+          
+    </button>
+    <div class="panel">
+      <form
+      id="relationshipStatusForm"
+      [formGroup]="relationshipStatusForm"
+      (ngSubmit)="setRelationshipStatus()"
+      novalidate>
+      <div class="d-grid gap-2">
+        <div class="form-group">
+          <select class="form-select form-control"
+          id="relationshipStatus"
+          formControlName="relationshipStatus"
+          name="relationshipStatus">
+            <option selected>Status</option>
+            <option value="Single">Single</option>
+            <option value="In a relationship">In a relationship</option>
+            <option value="Merried">Merried</option>
+            <option value="It's complicated">It's complicated</option>
+            <option value="Enaged">Engaged</option>
+          </select>
+        </div>
+        <div class="form-group save-btn">
+          <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+          <button type="submit" id="submitButton" role="submit" class="btn btn-primary save-btn-btn"
+          [disabled]="relationshipStatusForm.invalid || relationshipStatusForm.pristine">Save</button>
+        </div>
+      </div>
+    </form>
+    </div>
+    </div>
+    <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.relationshipStatus !=null">
+      <div class="user-info-info">
+          <i class="bi bi-heart-fill h4 intro-icons"></i> <span >{{(selectedUser$ | async).user_info.relationshipStatus}}</span>
+          </div>
+          <div class="user-info-controls">
+            <button><i class="bi bi-pen h5"></i></button>
+          </div>
+  </div>
+  <div class="user-info">
+      <div class="user-info-info">
+      <i class="bi bi-heart-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+      <span *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.relationshipStatus !=null">
+     <span>{{(selectedUser$ | async).user_info.relationshipStatus}}</span>
+      </span>
+      <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.workplace !=null)">
+        No items to show
+        </span>
+      </div>
+      
+  </div>
+    
+    
+    </div>
+    
+    
+    </div>

@@ -1,0 +1,270 @@
+<div class="login center-content">
+  <div
+    class="container mx-auto justify-content-center align-self-center center-content"
+  >
+    <div class="row no-gutters">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8 col-rad">
+        <div class="row row-form col-rad row-shadow">
+          <div
+            class="col-lg-6 bg-dark text-light col-rad"
+            style="border-top-right-radius: 0px; border-bottom-right-radius: 0"
+          >
+            <div class="d-grid gap-3 text-center">
+              <h3 class="pt-3 px-2">
+                Welcome to <span style="color: #f041e5">NetYou!</span>
+              </h3>
+              <p class="text-start" style="font-family: serif">
+                Connect with your firends and family and let us be your platform
+                for that. No ads, complete privacy guaranteed! We don't share
+                your private data with third party apps :))
+              </p>
+              {{isLogged$|async}}
+              <button
+                (click)="change_info()"
+                class="btn btn-primary mb-3 w-50 mx-auto"
+                style="color: white"
+              >
+                Learn more
+              </button>
+              <img src="./assets/login1.svg" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-lg-6 col-rad">
+            <div
+              class="row py-1 row-form col-rad"
+              style="border-bottom-left-radius: 0"
+            >
+              <div class="col-lg-2"></div>
+              <div
+                class="col-lg-8 align-self-center text-center"
+                style="background-color: white"
+              >
+                <img
+                  src="./assets/logo.png"
+                  class="img-fluid pb-2"
+                  style="width: 12rem"
+                />
+                <h2 class="mb-1">Sign in</h2>
+                <div
+                  class="mb-3"
+                  style="
+                    color: grey;
+                    font-family: serif;
+                    text-align: center;
+                    font-size: 0.9rem;
+                  "
+                >
+                  Don't have an account yet?
+                  <a routerLink="signUp" style="font-size: 1rem">Sign up.</a>
+                </div>
+
+                <!--Login form-->
+                <form
+                  name="form"
+                  (ngSubmit)="f.form.valid && onSubmit()"
+                  #f="ngForm"
+                  novalidate
+                >
+                  <!--Username-->
+                  <div class="form-group mb-2">
+                    <!--Input wrap-->
+                    <div
+                      class="input-wrap"
+                      [ngClass]="{
+                        'input-errors':
+                          (username.errors || failed_username) && f.submitted,
+                        'input-ok':
+                          !username.errors && f.submitted && !failed_username
+                      }"
+                    >
+                      <input
+                        type="text"
+                        style="flex: 1"
+                        class="form-control transparent-input"
+                        name="username"
+                        [(ngModel)]="form.username"
+                        required
+                        #username="ngModel"
+                        placeholder="Username"
+                        (click)="isFailed = false; failed_username = false"
+                      />
+                      <i
+                        class="bi bi-exclamation-circle input-icon"
+                        *ngIf="
+                          (username.errors || failed_username) && f.submitted
+                        "
+                        style="color: red"
+                      ></i>
+                      <i
+                        class="bi bi-check-lg input-icon"
+                        *ngIf="
+                          !username.errors && f.submitted && !failed_username
+                        "
+                        style="color: #41944c"
+                      ></i>
+                    </div>
+                    <!--Input wrap end-->
+                    <!--Validation errors-->
+                    <div
+                      class="text-danger errors"
+                      role="alert"
+                      *ngIf="username.errors && f.submitted"
+                    >
+                      Username is required.
+                    </div>
+                    <!--Validation errors end-->
+                  </div>
+                  <!--Username end-->
+
+                  <!--Password-->
+
+                  <div class="form-group mb-2">
+                    <!--Input wrap-->
+                    <div
+                      class="input-wrap"
+                      [ngClass]="{
+                        'input-errors':
+                          (password.errors || failed_pass) && f.submitted,
+                        'input-ok':
+                          !password.errors && f.submitted && !failed_pass
+                      }"
+                    >
+                      <input
+                        type="password"
+                        class="form-control transparent-input"
+                        name="password"
+                        [(ngModel)]="form.password"
+                        placeholder="Password"
+                        required
+                        minlength="3"
+                        #password="ngModel"
+                        style="flex: 1"
+                        (click)="isFailed = false; failed_pass = false"
+                      />
+                      <i
+                        class="bi bi-exclamation-circle input-icon"
+                        *ngIf="(password.errors || failed_pass) && f.submitted"
+                        style="color: red"
+                      ></i>
+                      <i
+                        class="bi bi-check-lg input-icon"
+                        *ngIf="!password.errors && f.submitted && !failed_pass"
+                        style="color: green"
+                      ></i>
+                    </div>
+                    <!--Input wrap end-->
+                    <!--Validation errors-->
+                    <div
+                      class="text-danger errors"
+                      role="alert"
+                      *ngIf="password.errors && f.submitted"
+                    >
+                      <div *ngIf="password.errors['required']">
+                        Password is required.
+                      </div>
+                      <div *ngIf="password.errors['minlength']">
+                        Password must be at least 3 characters long.
+                      </div>
+                    </div>
+                    <!--Validation errors end-->
+                  </div>
+                  <!--Password end-->
+
+                  <!--Error messages-->
+                  <div
+                    class="text-danger mt-1 mb-2 errors"
+                    id="err"
+                    role="alert"
+                    *ngIf="f.submitted && isFailed"
+                  >
+                    {{ error_msg }}
+                  </div>
+                  <!--Error messages end-->
+
+                  <!--Checkbox-->
+                  <div class="form-group mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="true"
+                        id="remeberMeID"
+                        name="toRemeber"
+                        [(ngModel)]="form.toRemeber"
+                        #toRemeber="ngModel"
+                      />
+                      <label
+                        class="form-check-label ms-2"
+                        for="remenerMeID"
+                        style="color: #f041e5; font-size: 0.85rem"
+                        >Remeber me</label
+                      >
+                    </div>
+                  </div>
+                  <!--Checkbox end-->
+
+                  <!--Button-->
+                  <div class="form-group d-grid gap-2 mb-1">
+                    <button
+                      class="btn btn-primary btn-block rounded-pill"
+                      style="background-color: #f041e5; border: 0"
+                      role="submit"
+                    >
+                      Next
+                    </button>
+                  </div>
+                  <!--Button end-->
+                </form>
+                <!--Login form end-->
+
+                <a routerLink="renew_password" style="font-size: 0.85rem"
+                  >Forgot your password?</a
+                >
+                <h5><span>or</span></h5>
+                <div class="d-grid gap-2 mb-2">
+                  <button
+                    class="btn btn-outline-primary btn-block rounded-pill btn-sm btn-login"
+                   
+                  >
+                    <img
+                      src="./assets/icons8-google-48.png"
+                      style="width: 1.5rem; height: 1.5rem"
+                    />
+                    <span class="p-3">Continue with Google</span>
+                  </button>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                  <button
+                    class="btn btn-outline-primary btn-block rounded-pill btn-sm btn-login"
+                    (click)="login_facebook()"
+                  >
+                    <img
+                      src="./assets/icons8-facebook-48.png"
+                      style="width: 1.5rem; height: 1.5rem"
+                    />
+                    <span class="p-2">Continue with Facebook</span>
+                  </button>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                  <button
+                    class="btn btn-outline-primary btn-block rounded-pill btn-sm btn-login"
+                    (click)="login_twitter()"
+                  >
+                    <img
+                      src="./assets/icons8-twitter-48.png"
+                      style="width: 1.5rem; height: 1.5rem"
+                    />
+                    <span class="p-3">Continue with Twitter</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-lg-2 col-rad"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+</div>

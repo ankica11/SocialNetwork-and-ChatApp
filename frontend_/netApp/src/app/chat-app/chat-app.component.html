@@ -1,0 +1,136 @@
+<div class="chat-app">
+  <div class="contacts-wrapper">
+      <div class="contacts-header">
+        <div class="chat-header">
+          <h4 style="font-weight: bold">Chats</h4>
+          <div class="controls">
+            <button><i class="bi bi-three-dots"></i></button>
+            <button><i class="bi bi-camera-video-fill"></i></button>
+            <button><i class="bi bi-pencil-square"></i></button>
+          </div>
+        </div>
+        <div class="search">
+          <input type="search" placeholder="Search Messenger" class="form-control">
+        </div>
+      </div>
+ 
+      <div class="contacts">
+        
+        <div *ngFor="let contact of contacts">
+            <div class="contact" (click)="selectTheChat(contact)" role="button">
+                <div class="active-status">
+
+                    <img [src]="contact.avatar" class="rounded-circle avatar">
+                    <span >
+                        
+                        <span *ngIf="getActiveStatus(contact.user_session)=='online'" class="active-st">🟢</span>
+                        <span class="status" *ngIf="getActiveStatus(contact.user_session)!='unknown' && contact.user_session?.online == false">{{getActiveStatus(contact.user_session)}}</span>
+                    </span>
+                </div>
+            <span class="contact-name">{{contact.name}}</span>
+            </div>
+        </div>
+        </div>
+  </div>
+  <div class="chat-preview">
+       <div class="header">
+         <div class="header-left">
+            <img [src]="selectedUser?.avatar" class="rounded-circle avatar-chat">
+            <div class="name-active-status">
+              <span style="font-weight: bold; font-size: 0.9rem;">{{selectedUser?.name}}</span>
+              <span style="font-size: small; color: grey">{{getActiveStatus_(selectedUser?.user_session)}}</span>
+            </div>
+         </div>
+         <div class="header-right">
+          <i class="bi bi-telephone-fill h5"></i>
+          <i class="bi bi-camera-video-fill h5"></i>
+          <i class="bi bi-info-circle-fill h5"></i>
+         </div>
+       </div>
+       <div class="chat">
+            <div *ngFor="let message of selectedChat; let i= index">
+              <div [ngClass]="{'message-s':message.senderId === loggedUser.id, 'message-r': message.receiverId === loggedUser.id}">
+                <span class="message-date">{{message.created_at | date: 'MMM d, y AT h:mm a'}}</span>
+              <img [src]="message.sender.avatar" *ngIf="message.receiverId === loggedUser.id" class="rounded-circle avatar-peer">
+              <div 
+              [ngClass]="{'message-sender': message.senderId === loggedUser.id, 'message-receiver': message.receiverId === loggedUser.id}"
+              >{{message.text}}</div>
+              </div>
+            </div>
+       </div>
+       <div class="footer">
+        <div class="footer-left">
+          <i class="bi bi-plus-circle-fill"></i>
+          <i class="bi bi-plus-circle-fill"></i>
+          <i class="bi bi-plus-circle-fill"></i>
+          <i class="bi bi-plus-circle-fill"></i>
+        </div>
+        <textarea contenteditable="true" rows="1" cols="5" type="text" [(ngModel)]="message" placeholder="Aa" class="form-control" (keyup.enter)="sendMessage()"></textarea>
+        <div class="footer-right">
+          <i class="bi bi-hand-thumbs-up-fill h5" style="color: #e018c2f7"></i>
+        </div>
+      
+       </div>
+  </div>
+  <div class="chat-info">
+      <div class="chat-info-user">
+      <img *ngIf="selectedUser" [src]="selectedUser.avatar" class="rounded-circle" style="height: 80px; width: 80px; object-fit:cover; margin-bottom: 10px;">
+      <span style="font-weight: bold;">{{selectedUser?.name}}</span>
+      <span style="font-size: small; color: grey">{{getActiveStatus_(selectedUser?.user_session)}}</span>
+  </div>
+  <div class="chat-info-actions">
+    
+      <div class="d-grid" style="margin-left: 15px;margin-right: 15px; align-items: center;" >
+      <button><i class="bi bi-person-fill h5"></i></button>
+      <small style="font-size: small;">Profile</small>
+    </div>
+     <div class="d-grid" style="  margin-left: 15px;margin-right: 15px; align-items: center; justify-content: center;">
+      <button><i class="bi bi-bell-fill h5"></i></button>
+      <small style="font-size: small;">Mute</small>
+    </div>
+    <div class="d-grid" style="  margin-left: 15px;margin-right: 15px;">
+      <button><i class="bi bi-search h5"></i></button>
+      <small style="font-size: small;">Search</small>
+    </div>
+    
+  </div>
+  <div class="accordion" id="accordionExample" width="100%">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Customize chat
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, beatae!
+           </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Media, files and links
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde, deserunt!
+            </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Privacy & support
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet, soluta?
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

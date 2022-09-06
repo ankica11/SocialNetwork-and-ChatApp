@@ -1,0 +1,448 @@
+<div class="homepage pt-4">
+    <!--Left Sidebar-->
+    <div class="left-sidebar-wrapper">
+    <div class="left-sidebar d-grid mx-4 gap-2">
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <div style="position: relative">
+                <img [src]="loggedUser.avatar" class="rounded-circle mx-1" alt="" width="40" height="40" style="object-fit: cover;">
+                <span *ngIf="getActiveStatus(loggedUser.user_session)=='online'" class="active-st">🟢</span>
+            </div>
+            <span class="left-sidebar-text">{{loggedUser.name}}</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/icons8-group-50.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Friends</span>
+            </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/group-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Groups</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/marketplace-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Marketplace</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/watch2-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Watch</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/memories-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Memories</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/saved-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Saved</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/pages-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Pages</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/events-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Events</span>
+        </button>
+        </div>
+        <div class="left-sidebar-item">
+            <button class="d-flex align-items-center">
+            <img src="./assets/fav-icon.png"  alt="" width="30" height="30" class="mx-1">
+            <span class="left-sidebar-text">Favorites</span>
+        </button>
+        </div>
+        
+        <hr>
+        <div class="corpo-info">
+          Privacy.Terms <br> Vanzo Corporation Belgrade, Serbia © 2022
+          <br>
+          All rights reserved. This is original copy of Facebook
+        </div>
+    </div>
+    <!--Left Sidebar End-->
+    
+    </div>
+    <!--Left sidebar wrapper end-->
+
+    <div class="empty"></div>
+    
+
+    <!--Center Content-->
+    <div class="center-content">
+        <div class="new-post px-3">
+            <div class="add-post">
+    
+                <img [src]="loggedUser.avatar" class="rounded-circle post-profile-pic">
+                <button class="form-control" (click)="openBackDropCustomClass(content)" role="button">What's on your mind, {{loggedUser.name.split(' ')[0]}}?</button>
+            </div>
+            <div class="post-type">
+                <div>
+                    <img src="./assets/live.png" class="pe-2" height="35" width="35">
+                    <span class="type-links">Live</span>
+                </div>
+                <div>
+                    <img src="./assets/photo.png" class="pe-2" height="35" width="35">
+                    <span class="type-links">Photo/Video</span>
+                </div>
+                <div>
+                    <img src="./assets/flag.png" class="pe-2" height="35" width="35">
+                    <span class="type-links">Life event</span>
+                </div>
+            </div>
+        </div>
+        <div class="posts">
+            
+           <div *ngFor="let post of timeline$ | async; let i=index" class="post"
+           appHomepage
+           [debounceTime]="0"
+           (visible)="onVisible(post)"
+           >
+           
+           <div class="post-header">
+                <img [src]="post.avatar" class="rounded-circle post-profile-pic">
+                <div class="d-flex" style="flex-direction: column; justify-content: center;">
+                    <span class="post-name">{{post.name}}</span>
+                    <span class="post-date">{{post.created_at | date: 'longDate'}} . <small>
+                        <i class="bi bi-globe" *ngIf="post.audience=='public'"></i>
+                        <i class="bi bi-lock-fill" *ngIf="post.audience=='private'"></i>
+                        <i class="bi bi-people-fill" *ngIf="post.audience=='friends'"></i>
+                    </small></span>
+                </div>
+                <div class="post-actions" ><button class="rounded-circle"><i class="bi bi-three-dots h5"></i></button></div>
+            
+           </div>
+           <p class="post-text"> {{post.text}} </p>
+           <img *ngIf="post.photo" [src]="post.photo" class="post-photo img-fluid">
+           
+           <div class="post-reactions">
+                
+                <div class="post-likes">
+                    
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.LIKE)" class="rounded-circle" style="z-index: 8;"><img src="./assets/like3.png" class="emoji"></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.HEART)" class="rounded-circle" style="z-index: 7;"><img src="./assets/heart2.png" class="emoji"></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.LAUGH)" class="rounded-circle" style="z-index: 6;"><img src="./assets/smile.png" class="emoji"></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.CRY)" class="rounded-circle" style="z-index: 5;"><img src="./assets/sad.png" class="emoji"></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.ANGRY)" class="rounded-circle" style="z-index: 4;"><img src="./assets/angry.png" class="emoji"></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.NEUTRAL)" class="rounded-circle" style="z-index: 3;"><span class="emoji-text">😐</span></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.BORING)" class="rounded-circle" style="z-index: 2;"><span class="emoji-text">😒</span></button>
+                    <button *ngIf="all_posts_reactions.get(post.id)?.includes(ReactionType.MIDDLE_FINGER)" class="rounded-circle" style="z-index: 1;"><span class="emoji-text">🖕</span></button>
+                
+                  
+                    <span class="reactions-number" style="color:grey; margin-left: 10px; font-size: medium; font-weight: 500;" role="button" 
+                    (mouseenter)="showTooltip($event)" 
+                    (mouseleave)="hideTooltip($event)"
+                    (click)="showAllPostReactions(post, longContent)"
+                    >
+                        <small *ngIf="posts_reactions.get(post.id)?.length != 0">
+                        {{posts_reactions.get(post.id)?.length}}
+                        </small>
+                        <div style=" visibility: hidden;" class="reactions-tooltip">
+                        <span *ngFor="let reaction of posts_reactions.get(post.id) | slice:0:10" style="color: white; width: max-content;">
+                            {{reaction['user'].name}}
+                         </span>
+                        
+                        </div>
+                </span>
+                </div>
+                <div class="post-comments">
+                    <span style="color: grey">
+                       <small *ngIf="posts_comments.get(post.id)?.length != 0"><button type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed[i]"
+                            aria-controls="collapseExample">{{posts_comments.get(post.id)?.length}} comments</button></small>
+                        <small *ngIf="posts_comments.get(post.id)?.length == 0">No comments</small>
+                      
+                    </span>
+                </div>
+           </div>
+           
+           <div class="post-like-comm-share">
+            
+           
+            <div class="like-btn-container" (mouseover)="showReactions(i)" (mouseout)="hideReactions(i)">
+                <div class="reaction-container" style=" visibility: hidden">
+                    <button (click)="react(post, ReactionType.HEART, i)"><img src="assets/icons8-heart.gif" width="40" height="40" style="border-radius: 15px"></button>
+                    <button (click)="react(post, ReactionType.LIKE, i)"><img src="assets/facebook-like.gif" width="40" height="40"></button>
+                    <button (click)="react(post, ReactionType.BORING, i)"><img src="assets/boring.gif" width="40" height="40"></button>
+                    <button (click)="react(post, ReactionType.CRY, i)"><img src="assets/crying.gif" width="38" height="38"></button>
+                    <button (click)="react(post, ReactionType.ANGRY, i)"><img src="assets/angry.gif" width="35" height="35"></button>
+                    <button (click)="react(post, ReactionType.LAUGH, i)"><img src="assets/lol.gif" width="40" height="40"></button>
+                    <button (click)="react(post, ReactionType.NEUTRAL, i)"><img src="assets/neutral.gif" width="40" height="40"></button>
+                    <button (click)="react(post, ReactionType.MIDDLE_FINGER, i)"><img src="assets/middle-finger.gif" width="40" height="40" style="border-radius: 15px"></button>
+                </div>
+               <div [ngSwitch]="my_reactions_for_posts.get(post.id)" class="like">
+                    <button *ngSwitchCase="ReactionType.NONE"><img style="padding-right: 5px;" src="./assets/fblike.png">Like</button>
+                    <button *ngSwitchCase="ReactionType.HEART"><span style="font-size: medium">❤️<span style="color: red; font-weight: 500; padding-left: 5px;">Love</span></span></button>
+                    <button *ngSwitchCase="ReactionType.LIKE"><span style="font-size: medium">👍<span style="color: #E9D522; font-weight: 500; padding-left: 5px;">Like</span></span></button>
+                    <button *ngSwitchCase="ReactionType.BORING"><span style="font-size: medium">😕<span style="color: #E9D522; font-weight: 500; padding-left: 5px;">Bored</span></span></button>
+                    <button *ngSwitchCase="ReactionType.CRY"><span style="font-size: medium">😢<span style="color: #E9D522; font-weight: 500; padding-left: 5px;">Sad</span></span></button>
+                    <button *ngSwitchCase="ReactionType.ANGRY"><span style="font-size: medium">😡<span style="color: red; font-weight: 500; padding-left: 5px;">Angry</span></span></button>
+                    <button *ngSwitchCase="ReactionType.LAUGH"><span style="font-size: medium">😆 <span style="color: #E9D522;font-weight: 500; padding-left: 5px;">Haha</span></span></button>
+                    <button *ngSwitchCase="ReactionType.NEUTRAL"><span style="font-size: medium">😑<span style="color: #E9D522;font-weight: 500; padding-left: 5px;">Suspicious</span></span></button>
+                    <button *ngSwitchCase="ReactionType.MIDDLE_FINGER"><span style="font-size: medium">🖕<span style="color: #E9D522;font-weight: 500; padding-left: 5px;">Fuck you</span></span></button>
+                
+    
+                </div>
+                
+                
+                
+            </div>
+            <div><button (click)="comment($event)"><img style="padding-right: 5px;" src="./assets/comm.png">Comment</button></div>
+            <div><button><img style="padding-right: 5px;" src="./assets/share.png">Share</button></div>
+           </div>
+    
+           <div class="comment-section">
+            <div class="new-comment">
+                <img [src]="loggedUser.avatar" class="rounded-circle">
+                <div class="comment-input">
+                    <input type="text" name="commentText" id="commentText" class="commentInput"
+                    (keyup.enter)="postComment($event, post)" placeholder="Write a comment...">
+                    <span style="font-size: x-small;">Press Enter to post.</span>
+                </div>
+            </div>
+            <div class="top-comment">
+                <div class="top-comment-comment" *ngIf="posts_comments.get(post.id)?.length != 0">
+                    <img *ngIf="posts_comments.get(post.id)" [src]="posts_comments.get(post.id)[0]['user'].avatar" class="rounded-circle">
+                    <div class="comm">
+                    <div class="comm-top">
+                        <span class="name" *ngIf="posts_comments.get(post.id)">{{posts_comments.get(post.id)[0]['user'].name}}</span>
+                        <div *ngIf="posts_comments.get(post.id)">
+                            {{posts_comments.get(post.id)[0]['text']}}
+                        </div>
+                    </div>
+                    <div class="comm-controls">
+                        <div class="time" *ngIf="posts_comments.get(post.id)">{{calculateTimeLapse(posts_comments.get(post.id)[0]['created_at'])}}</div>
+                        <a role="button" style="margin-right: 5px;">Like</a>
+                        <a role="button">Reply</a>
+                    </div>
+                    </div>
+                </div>
+                
+                <span type="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed[i]"
+                aria-controls="collapseExample" *ngIf="posts_comments.get(post.id)?.length-1 != 0 && posts_comments.get(post.id)?.length != 0">
+                   View all comments
+                </span>
+                
+            </div>
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed[i]">
+                <div class="comments">
+                    <div class="comment" *ngFor="let comment of posts_comments.get(post.id) | slice:1">
+                        <img [src]="comment?.['user'].avatar" class="rounded-circle">
+                        <div class="comm">
+                        <div class="comm-text">
+                            <div class="name">{{comment['user'].name}}</div>
+                            <div>{{comment['text']}}</div>
+                            
+                        </div>
+                        <div class="comm-controls">
+                            <div class="time">{{calculateTimeLapse(comment['created_at'])}}</div>
+                            <a role="button" style="margin-right: 5px;">Like</a>
+                            <a role="button">Reply</a>
+                        </div>
+                        </div>
+                    
+                  
+                    </div>
+                </div>
+            </div>
+           </div>
+           
+           </div>
+              
+              
+              
+              
+              
+        </div>
+       </div>
+    
+
+      
+
+   
+    <!--Center Content End-->
+
+    <div class="empty"></div>
+
+    <!--Right Sidebar-->
+    <div class="right-sidebar">
+        <span style="font-weight: bold; color: grey; padding-bottom: 20px">Contacts</span>
+        <div *ngFor="let contact of contacts">
+            <div class="contact">
+                <div class="active-status">
+
+                    <img [src]="contact.avatar" class="rounded-circle avatar">
+                    <span >
+                        
+                        <span *ngIf="getActiveStatus(contact.user_session)=='online'" class="active-st">🟢</span>
+                        <span class="status" *ngIf="getActiveStatus(contact.user_session)!='unknown' && contact.user_session?.online == false">{{getActiveStatus(contact.user_session)}}</span>
+                    </span>
+                </div>
+            <span class="contact-name">{{contact.name}}</span>
+            </div>
+        </div>
+    </div>
+    <!--Right Sidebar End-->
+    
+
+
+
+</div>
+
+    
+    <!--Add post modal-->
+    <ng-template #content let-modal>
+        <div class="modal-header text-center">
+          <h5 class="modal-title custom-title w-100">Create post</h5>
+          <button type="button" class="btn-close custom-close rounded-circle" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <form
+                id="postForm"
+                [formGroup]="postForm"
+                (ngSubmit)="addPost()"
+                novalidate>
+          <div class="d-grid gap-2">
+          <div class="form-group">
+          <div class="profile-modal">
+            <img [src]="loggedUser.avatar" class="rounded-circle post-profile-pic-modal">
+            <div class="post-audience">
+                <span style="font-weight: bold; font-size: small">{{loggedUser.name}}</span>
+                <select
+                 id="audience"
+                 formControlName="audience"
+                 class="form-select form-select-sm form-select-custom" name="audience" aria-label="Default select example">
+                    <option value="private">Only me</option>
+                    <option value="public">Public</option>
+                    <option value="friends">Friends</option>
+                    <option value="except">Friends except...</option>
+                 
+                 
+                  </select>
+                 
+            </div>
+    
+          </div>
+          </div>
+          <div class="form-group">
+          <div class="post-input-area">
+            
+              <textarea 
+              id="postText"
+              formControlName="postText"
+              class="form-control textarea-custom" rows="3" placeholder="What's on your mind?" name="post"></textarea>
+           
+              <div class="progress">
+                <svg class="progress-circle" width="50px" height="50px" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="progress-circle-back"
+                            cx="25" cy="25" r="19"></circle>
+                    <circle class="progress-circle-prog"
+                            cx="25" cy="25" r="19"></circle>
+                    
+                </svg>
+                <div class="characters-left">20</div>
+                
+            </div>
+            <!--Post photo preview-->
+            <img class="preview-photo" [src]="postImagePreview" *ngIf="postImagePreview">
+    
+          </div>
+          </div>
+          <div class="form-group">
+            <div class="post-attachmets">
+                <div style="flex: 1; font-weight: bold; font-size: small; align-self: center;">Add to your post</div>
+                <div style="flex: 1; display:flex; justify-content: space-around;">
+    
+                    <!--Adding photo to post-->
+                    <label class="post-icon">
+                    <i class="post-icon bi bi-file-earmark-image h5" style="color: green"></i>
+                        <input type="file"
+                        id="file"
+                        (change)="getPostImagePreview($event)"
+                        style="display: none;"
+                        >
+    
+                    </label>
+    
+                   <a class="post-icon" role="button">
+                    <i class="post-icon bi bi-person-plus-fill h5" style="color: dodgerblue"></i>
+                   </a>
+                    <a class="post-icon" role="button">
+                    <i class="post-icon bi bi-emoji-smile h5" style="color: yellow"></i>
+                    </a>
+                    <a class="post-icon" role="button">
+                    <i class="post-icon bi bi-geo-alt-fill h5" style="color: red"></i>
+                    </a>
+                    <a class="post-icon" role="button">
+                    <i class="post-icon bi bi-link-45deg h5" style="color: cornflowerblue"></i>
+                    </a>
+                </div>
+            </div>
+          </div>
+          <div class="form-group d-grid">
+           <button
+           type="submit"
+           id="submitButton"
+           role="submit"
+           [disabled]="postForm.invalid || postForm.pristine"
+            class="btn btn-primary btn-block post-btn">Post</button>
+          </div>
+    
+    
+          </div>
+          </form>
+        </div>
+        
+      </ng-template>
+      <!--Add post modal end-->
+    
+      <!--Users reactions modal-->
+      <ng-template #longContent let-modal>
+        <div class="modal-header">
+          <h5 class="modal-title">All reactions</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body modal-reactions">
+          <div *ngFor="let item of selectedUsers" class="user-react">
+            <div class="img-reaction">
+                <div class="user-reactions">
+                    <span *ngIf="item.reaction == ReactionType.LIKE" class="rounded-circle" style="z-index: 8;"><span class="emoji-text-react">👍</span></span>
+                    <span *ngIf="item.reaction == ReactionType.HEART" class="rounded-circle" style="z-index: 8;"><img src="./assets/heart2.png" class="emoji-react"></span>
+                    <span *ngIf="item.reaction == ReactionType.LAUGH" class="rounded-circle" style="z-index: 8;"><img src="./assets/smile.png" class="emoji-react"></span>
+                    <span *ngIf="item.reaction==ReactionType.CRY" class="rounded-circle" style="z-index: 8;"><img src="./assets/sad.png" class="emoji-react"></span>
+                    <span *ngIf="item.reaction==ReactionType.ANGRY" class="rounded-circle" style="z-index: 8;"><img src="./assets/angry.png" class="emoji-react"></span>
+                    <span *ngIf="item.reaction==ReactionType.NEUTRAL" class="rounded-circle" style="z-index: 8;"><span class="emoji-text-react">😐</span></span>
+                    <span *ngIf="item.reaction==ReactionType.BORING" class="rounded-circle" style="z-index: 8;"><span class="emoji-text-react">😒</span></span>
+                    <span *ngIf="item.reaction==ReactionType.MIDDLE_FINGER" class="rounded-circle" style="z-index: 8;"><span class="emoji-text-react">🖕</span></span>
+                </div>   
+                <img [src]="item.user.avatar" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+    
+            </div>
+            <span>{{item.user.name}}</span>
+            <div [ngSwitch]="item.status" style=" flex: 2; display: flex; align-items: center; justify-content: flex-end;">
+                <button  *ngSwitchCase="Status.NONE" class="reaction-btn add-friend">Add Friend</button>
+                <button  *ngSwitchCase="Status.FRIENDS" class="reaction-btn other">Friends</button>
+                <button  *ngSwitchCase="Status.PENDING_SENT" class="reaction-btn other">Sent request</button>
+                <button  *ngSwitchCase="Status.PENDING_RECEIVED" class="reaction-btn other">Accept request</button>
+                <span  *ngSwitchDefault>You</span>
+            </div>
+            
+          </div>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+      </ng-template>

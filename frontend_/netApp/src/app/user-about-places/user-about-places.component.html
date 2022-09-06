@@ -1,0 +1,163 @@
+<div class="places">
+
+    <div class="places-section">
+    <span>Places lived</span>
+    
+    <div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.currentPlace==null)">
+    <button class="accordion" (click)="showForm($event)">
+      <i class="bi bi-plus-circle h5"></i> 
+      <span style="padding-left: 5px;">Add current city</span>
+          
+    </button>
+    <div class="panel">
+      <form
+                id="currentPlaceForm"
+                [formGroup]="currentPlaceForm"
+                (ngSubmit)="setCurrentPlace()"
+                novalidate>
+                <div class="d-grid gap-2">
+                  <div class="d-grid gap-1 form-group pb-3  input-custom">
+                    <div class="legend-label" [class.legend-label-errors]="currentPlace.invalid && (currentPlace.dirty || currentPlace.touched) && currentPlace.errors?.['required']">Current place</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="currentPlace"
+                            formControlName="currentPlace"
+                            name="currentPlace"
+                            placeholder="Current place"
+                           
+                            [class.input-errors]="currentPlace.invalid && (currentPlace.dirty || currentPlace.touched) && currentPlace.errors?.['required']">
+
+                      <small *ngIf="currentPlace.invalid && (currentPlace.dirty || currentPlace.touched)">
+                          <small style="color: rgb(251, 96, 96)" *ngIf="currentPlace.errors?.['required']">Current place is required.</small>
+                    </small>
+                  </div>
+                  <div class="form-group save-btn">
+                    <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                    <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                    [disabled]="currentPlaceForm.invalid || currentPlaceForm.pristine">Save</button>
+                  </div>
+                </div>
+              </form>
+    </div>
+    </div>
+    <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.currentPlace !=null">
+      <div class="user-info-info">
+        <div>
+          <i class="bi bi-house-door-fill h4 intro-icons"></i> Lives in <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.currentPlace}}</span>
+          </div>
+          <small>Current place</small> 
+        </div>
+          <div class="user-info-controls">
+            <button><i class="bi bi-pen h5"></i></button>
+          </div>
+  </div>
+    <div class="user-info">
+      <div class="user-info-info">
+        <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.currentPlace !=null">
+          <div>
+          <i class="bi bi-house-door-fill h4 intro-icons"></i> 
+          Lives in
+          <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.currentPlace}}</span>
+          </div>
+          <small>Current place</small>
+        </span>
+        
+        <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.currentPlace !=null)">
+          <i class="bi bi-house-door-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+        
+          No items to show
+        </span>
+        
+      </div>
+      
+  </div>
+
+
+
+
+
+
+
+
+  <div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.hometown==null)">
+    <button class="accordion" (click)="showForm($event)">
+      <i class="bi bi-plus-circle h5"></i> 
+      <span style="padding-left: 5px;">Add hometown</span>
+          
+    </button>
+    <div class="panel">
+      <form
+                id="hometownForm"
+                [formGroup]="hometownForm"
+                (ngSubmit)="setHometown()"
+                novalidate>
+                <div class="d-grid gap-2">
+                  <div class="d-grid gap-1 form-group pb-3  input-custom">
+                    <div class="legend-label" [class.legend-label-errors]="hometown.invalid && (hometown.dirty || hometown.touched) && hometown.errors?.['required']">Hometown</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="hometown"
+                            formControlName="hometown"
+                            name="hometown"
+                            placeholder="Hometown"
+                           
+                            [class.input-errors]="hometown.invalid && (hometown.dirty || hometown.touched) && hometown.errors?.['required']">
+
+                      <small *ngIf="hometown.invalid && (hometown.dirty || hometown.touched)">
+                          <small style="color: rgb(251, 96, 96)" *ngIf="hometown.errors?.['required']">Hometown is required.</small>
+                    </small>
+                  </div>
+                  <div class="form-group save-btn">
+                    <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                    <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                    [disabled]="hometownForm.invalid || hometownForm.pristine">Save</button>
+                  </div>
+                </div>
+              </form>
+    </div>
+    </div>
+    <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.hometown !=null">
+      <div class="user-info-info">
+        <div>
+          <i class="bi bi-geo-alt-fill h4 intro-icons"></i> From <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.hometown}}</span>
+          </div>
+          <small>Hometown</small> 
+        </div>
+          <div class="user-info-controls">
+            <button><i class="bi bi-pen h5"></i></button>
+          </div>
+  </div>
+    <div class="user-info">
+      <div class="user-info-info">
+        <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.hometown !=null">
+          <div>
+          <i class="bi bi-geo-alt-fill h4 intro-icons"></i> 
+          From
+          <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.hometown}}</span>
+          </div>
+          <small>Hometown</small>
+        </span>
+        
+        <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.hometown !=null)">
+          <i class="bi bi-geo-alt-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+        
+          No items to show
+        </span>
+        
+      </div>
+      
+  </div>
+    
+    
+    
+ 
+    
+    </div>
+    
+    
+    
+    
+    
+    </div>

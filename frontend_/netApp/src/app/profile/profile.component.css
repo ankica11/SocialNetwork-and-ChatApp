@@ -1,0 +1,444 @@
+@media(max-width: 1900px){
+    img{
+        width: 100%;
+        height: 100%;
+        align-self: center;
+        
+    
+    }
+    
+}
+ @media (min-width: 2000px){
+    .side-empty-space{
+        flex: 4 !important;
+    
+    }
+    
+    
+ }
+
+.profile{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #ECECEC;
+    flex-direction: column;
+    min-width: 0;
+    margin-top: 60px;
+}
+
+.upper-content{
+   background: rgb(242,130,238);
+    background: linear-gradient(180deg, rgba(242,130,238,0.63916904652486) 0%, rgba(242,130,238,0.34505139946603647) 27%, rgba(255,255,255,0.619561203387605) 56%); 
+   
+   
+    flex:1;
+    display: flex;
+    min-width: 0;
+}
+
+.side-empty-space{
+    flex:1;
+}
+
+.center-upper-content{
+    flex:4;
+    background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+
+
+}
+
+.cover-photo{
+    flex: 5;
+    background-color: transparent !important;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+
+}
+
+.cover-photo img{
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+
+}
+
+.cover-photo button{
+    position: absolute;
+    bottom: 3%;
+    right: 4%;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    padding: 7px;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px;
+}
+
+.cover-photo button:hover{
+    background-color: rgba(240, 65, 229, 0.8);
+    opacity: 0.7 !important;
+    color: white;
+    z-index: 3;
+
+}
+/*User info content*/
+.user-info-content{
+    flex: 2;
+    background-color: transparent !important;
+    display: flex;
+
+}
+
+.profile-pic{
+    flex:3;
+    background-color: transparent !important;
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    position: relative;
+
+}
+
+.profile-pic img{
+    
+    border:solid white 4px ;
+    height: 200px;
+    width: 200px;
+    margin-top: -4rem;
+    object-fit: cover;
+    
+    
+}
+
+.modal-body-custom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.modal-footer > button:hover{
+    background-color: #FF30C9 ;
+}
+
+.preview-photo{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border: 2px solid #FF30C9;
+    padding: 10px;
+}
+
+.profile-pic button {
+    border-radius: 50%;
+    background-color: #DADADA !important;
+    border: solid #DADADA 5px;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+
+}
+
+.profile-pic button:hover{
+    background-color: #D0D0D0 !important;
+    border: solid #D0D0D0 5px;
+}
+
+.profile-name-friends{
+    flex:6;
+    background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.user-name{
+    flex:1;
+    background-color: transparent !important;
+}
+
+.user-name h3{
+    font-weight: bold;
+    margin-top: 3%;
+   
+}
+
+.friends-count{
+    flex:1;
+    background-color: transparent !important;
+
+}
+
+.friends-pic-list-wrapper{
+    flex: 2;
+    background-color: transparent !important;
+    display: flex;
+    padding-bottom: 5%;
+}
+
+.friends-pic-list{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.friends-pic-list-space{
+    flex: 1;
+}
+
+.friend-pic{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-right: -7px;
+   
+    
+  
+}
+
+.edit-profile-controls{
+    flex:4;
+    background-color: transparent !important;
+    display: flex;
+}
+
+.add-story{
+    flex:1;
+    display: flex;
+    background-color: transparent !important;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 9%;
+}
+
+.add-btn{
+    background-color: #FF30C9 !important;
+  color: white !important;
+  border: 0 !important;
+}
+
+.add-story button{
+    width: 90% !important;
+    padding: 6px;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 6px;
+    border: 0 !important;
+}
+
+.add-story button:hover{
+    border: transparent !important;
+    background-color: rgba(240, 65, 229, 0.4);
+}
+.change-profile{
+    flex:1;
+    background-color: transparent !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-bottom: 9%;
+
+}
+
+.send-message{
+    width: 90% !important;
+    padding: 6px;
+    background-color: #D1D1D1!important;
+    color: black !important;
+    border: 0 !important;
+    outline: none !important;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 6px;
+}
+
+.edit-profile{
+    width: 90% !important;
+    padding: 6px;
+    background-color: #D1D1D1!important;
+    color: black !important;
+    border: 0 !important;
+    outline: none !important;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 6px;
+}
+
+.friends-btn{
+  
+    text-align: center;
+    
+}
+
+.edit-profile:hover{
+    background-color: rgba(240, 65, 229, 0.3) !important;
+}
+
+.change-profile button:hover{
+    background-color: rgba(240, 65, 229, 0.3) !important;
+}
+
+/*Naviagtion*/
+.profile-navigation{
+    flex: 0;
+    background-color: transparent !important;
+    display: flex;
+    border-top: 1px solid #B9B9B9;
+    padding-top: 10px;
+    
+    
+
+}
+.navigation-items{
+    background-color: transparent !important;
+    flex: 2;
+    display: flex;
+    
+}
+
+.navigation-item{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: transparent !important;
+
+}
+.item-border-active{
+    border-bottom: 5px solid rgba(240, 65, 229, 0.8) !important;
+    justify-self: end;
+    padding-top: 10px;
+    
+}
+
+.item-border{
+    border-bottom: 5px solid transparent !important;
+    justify-self: end;
+    padding-top: 10px;
+}
+
+.space{
+    flex: 1;
+}
+.navigation-link{
+   flex: 1;
+   padding-left: 5px;
+   padding-right: 5px;
+   align-self: center;
+   justify-self: center !important;
+   font-size: 0.9rem;
+    
+}
+
+.navigation-link button:hover{
+    color:rgba(240, 65, 229, 0.8) !important
+}
+
+.navigation-link button{
+    background-color: transparent !important;
+    border: 0 !important;
+    color: gray;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.navigation-link-active{
+    color:rgba(240, 65, 229, 0.8) !important;
+}
+
+.more-actions{
+    background-color: transparent !important;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2%;
+    padding-bottom: 1%;
+
+}
+
+.more-actions button{
+    border:0 !important;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+    background-color: #E1E1E1E1 !important;
+}
+
+.more-actions button:hover{
+    background-color: rgba(240, 65, 229, 0.3) !important;
+}
+
+
+
+
+.bottom-content{
+    width: 100%;
+    background-color: #ECECEC;
+    flex: 4 !important; 
+    display: flex;
+    min-width: 0;
+}
+
+.center-bottom-content{
+    flex: 4 !important;
+    margin-top: 2rem;
+    display: flex;
+    min-width: 0;
+    
+    
+}
+
+
+.custom-modal .modal-content {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border: 0 !important;
+    border-radius: 10px;
+    
+  }
+
+
+
+
+  
+  .white-backdrop {
+    background-color: white;
+    opacity: 0.7 !important;
+  }
+
+  .custom-close{
+    background-color: #ECECEC;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 5px;
+    
+  }
+
+  .custom-close:hover{
+    background-color: #CECECE;
+  }
+
+  .custom-title{
+    
+    font-weight: bold;
+   
+ 
+    
+  }
+
+app-profile-posts{
+    width: 100%;
+}
+
+app-user-about{
+    width: 100%;
+}

@@ -1,0 +1,43 @@
+@media(min-width: 768px){
+    .news-input{
+        width: 50%;
+    }
+}
+
+html{
+    scroll-behavior: smooth !important;
+}
+
+.bi-alarm-fill{
+    border: 0 0 0 0 !important;
+    color: blueviolet;
+
+}
+
+.bla{
+    background-color: blue !important;
+}
+
+.showcase-section{
+    background-image: url('src/assets/background2.jpg') !important;
+    background-size: cover !important;
+    
+}
+
+body::before {
+    display: block;
+    content: '';
+    height: 50px;
+}
+
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+  }
+  .map-container iframe{
+  border-radius: 10px;
+  
+    
+  }

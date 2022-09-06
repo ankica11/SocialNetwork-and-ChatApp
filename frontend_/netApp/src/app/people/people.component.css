@@ -1,0 +1,147 @@
+
+.content{
+    grid-area: content;
+    background-color: rgb(235, 233, 234) !important;
+    height: 100%;
+}
+
+.main-nav{
+    grid-area: main-nav;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+@media(min-width: 1000px){
+    .friends{
+        margin-top: 60px;
+        height: 100% !important;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 1fr !important;
+        grid-template-areas: 
+        "main-nav   content" !important
+
+    }
+
+    .main-nav{
+        flex-direction: column;
+    }
+
+    .main-nav-nav{
+        flex: 1 !important;
+        display: flex;
+        flex-direction: column !important;
+        
+      
+    }
+
+    .main-nav-nav > h3{
+        display: block !important;
+    }
+
+    .main-nav-empty{
+        flex: 2 !important;
+    }
+
+    .btn-icon > i{
+        display: block !important;
+    }
+    
+    .main-nav-nav > button > i{
+        display: block !important;
+    }
+
+    .btn-icon > span{
+        font-size: 1.1rem !important;
+        font-weight: 500 !important;
+     }
+
+  
+}
+.friends{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    grid-template-areas: 
+    "main-nav"
+    "content"
+    
+}
+.main-nav-nav{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.main-nav-nav > h3{
+    display: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.main-nav-empty{
+    flex:0;
+    
+}
+
+.main-nav{
+    display: flex;
+    background-color: white;
+}
+
+.main-nav-nav > button{
+    background-color: transparent;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0 !important;
+    display: flex;
+}
+
+.main-nav-nav > button:hover{
+    background-color: rgb(254, 183, 243) !important;
+    border-radius: 5px;
+    
+}
+
+.active{
+
+    background-color: rgb(255, 212, 248) !important;
+    border-radius: 5px;
+
+}
+
+.btn-icon-active{
+    color: rgb(234, 11, 197);
+}
+
+.btn-right-active{
+    color: rgb(255, 212, 248);
+}
+
+.btn-icon{
+    flex: 8;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.btn-icon > i{
+    display: none ;
+}
+
+.btn-icon > span{
+   font-size: 0.8rem;
+   font-weight: bold;
+}
+
+.main-nav-nav > button > i{
+    display: none ;
+}
+
+.btn-right{
+    flex: 1;
+    
+}

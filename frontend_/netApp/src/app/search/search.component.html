@@ -1,0 +1,57 @@
+<div class="search">
+    <!--Left Sidebar-->
+    <div class="left-sidebar">
+        <div class="heading">
+         <h3>Search results</h3>
+        </div>
+        <div class="filters">
+            <div>All</div>
+            <div>People</div>
+            <div>Posts</div>
+            <div>Pages</div>
+            <div>Photos</div>
+            <div>Videos</div>
+            <div>Places</div>
+            <div>Marketplace</div>
+        </div>
+    </div>
+    <!--Left Sidebar End-->
+
+    <!--Results-->
+    <div class="results">
+
+        <div class="result-wrapper" *ngFor="let res of searchResults$ | async">
+            <div class="result" >
+                <div class="profile-photo">
+                    
+                    <img [routerLink]="['/start/profile', res.user.username]" role="button" [src]="res.user.avatar" class="rounded-circle search-profile-pic">
+                    
+                </div>
+                <div class="profile-info">
+                  <span style="font-weight: bold;"  [routerLink]="['/start/profile', res.user.username]" role="button">{{res.user.name}}</span> 
+                    <span style="font-size: small; color: grey">
+                        University of Belgrade, School of Electrical Engineering
+                    </span>
+                    <div class="mutuals">
+                        <button class="rounded-circle" style="z-index: 3 !important;"><img src="https://randomuser.me/api/portraits/women/11.jpg" class="rounded-circle"></button>
+                        
+                        <button class="rounded-circle" style="z-index: 2 !important;"><img src="https://randomuser.me/api/portraits/women/7.jpg" class="rounded-circle"></button>
+                        
+                        <button class="rounded-circle" style="z-index: 1 !important;"><img  src="https://randomuser.me/api/portraits/men/5.jpg" class="rounded-circle"></button>
+
+                        <span style="padding-left: 10px;"><small style="color: grey">3 mutual friends</small></span>
+          
+                    </div>
+                </div>
+                <div class="action">
+                    <button class="btn btn-primary delete-btn" *ngIf="res.status == Status.FRIENDS"><i class="bi bi-person-check-fill"></i> Friends</button>
+                    <button class="btn btn-primary add-btn" *ngIf="res.status == Status.NONE" (click)="addFriend(res.user)">Add friend</button>
+                    <button class="btn btn-primary delete-btn" *ngIf="res.status == Status.PENDING_SENT">Sent request</button>
+                    <button class="btn btn-primary delete-btn" *ngIf="res.status == Status.PENDING_RECEIVED">Accept request</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--REsults End-->
+</div>

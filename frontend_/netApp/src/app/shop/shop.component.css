@@ -1,0 +1,15 @@
+#shop{
+    margin-top: 60px;
+}
+
+.comments{
+    display: flex;
+   
+}
+
+.comment{
+    background-color: aqua;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}

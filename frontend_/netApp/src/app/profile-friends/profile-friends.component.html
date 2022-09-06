@@ -1,0 +1,14 @@
+<div class="friends">
+    <div class="friends-container">
+        <div class="friend-item" *ngFor="let friend of friends">
+            <img [src]="friend.avatar" role="button" [routerLink]="['/start/profile', friend.username]">
+            <span role="button" [routerLink]="['/start/profile', friend.username]">
+                <span>{{friend.name}}</span>
+                <small style="color: grey; opacity: 0.8; font-weight: 400;">2 mutual friends</small>
+            </span>
+            <div class="friend-actions">
+                <i class="bi bi-three-dots h4"></i>
+            </div>
+        </div>
+    </div>
+</div>

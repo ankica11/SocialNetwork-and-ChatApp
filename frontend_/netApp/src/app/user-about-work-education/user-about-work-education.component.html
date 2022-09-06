@@ -1,0 +1,190 @@
+<div class="work-education">
+    <!--Section-->
+    <div class="work-education-section">
+        <span>Work</span>
+        <div class="accordion-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.workplace==null)">
+            <button class="accordion" (click)="showForm($event)">
+                <i class="bi bi-plus-circle h5"></i> 
+                <span style="padding-left: 5px;">Add a workplace</span>
+  
+            </button>
+            <div class="panel">
+                <form
+                id="workplaceForm"
+                [formGroup]="workplaceForm"
+                (ngSubmit)="setWorkplace()"
+                novalidate>
+                <div class="d-grid gap-2">
+                  <div class="d-grid gap-1 form-group pb-3  input-custom">
+                    <div class="legend-label" [class.legend-label-errors]="workplace.invalid && (workplace.dirty || workplace.touched) &&  workplace.errors?.['required']">Workplace</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="workplace"
+                            formControlName="workplace"
+                            name="workplace"
+                            placeholder="Workplace"
+                           
+                            [class.input-errors]="workplace.invalid && (workplace.dirty || workplace.touched) && workplace.errors?.['required']">
+
+                      <small *ngIf="workplace.invalid && (workplace.dirty || workplace.touched)">
+                          <small style="color: rgb(251, 96, 96)" *ngIf="workplace.errors?.['required']">Workplace is required.</small>
+                    </small>
+                  </div>
+                  <div class="form-group save-btn">
+                    <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                    <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                    [disabled]="workplaceForm.invalid || workplaceForm.pristine">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.workplace !=null">
+            <div class="user-info-info">
+                <i class="bi bi-briefcase-fill h4 intro-icons"></i> Works at <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.workplace}}</span>
+                </div>
+                <div class="user-info-controls">
+                  <button><i class="bi bi-pen h5"></i></button>
+                </div>
+        </div>
+        <div class="user-info">
+            <div class="user-info-info">
+            <i class="bi bi-briefcase-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+            <span *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.workplace !=null">
+            Works at <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.workplace}}</span>
+            </span>
+            <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.workplace !=null)">
+              No items to show
+              </span>
+            
+            </div>
+            
+        </div>
+        
+      </div>
+        
+    
+
+    <!--Section-->
+    <div class="work-education-section">
+        <span>Education</span>
+        <div class="accordion-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.college==null)">
+            <button class="accordion" (click)="showForm($event)">
+                <i class="bi bi-plus-circle h5"></i> 
+                <span style="padding-left: 5px;">Add a college</span>
+  
+            </button>
+            <div class="panel">
+                <form
+                id="collegeForm"
+                [formGroup]="collegeForm"
+                (ngSubmit)="setCollege()"
+                novalidate>
+                <div class="d-grid gap-2">
+                  <div class="d-grid gap-1 form-group pb-3  input-custom">
+                    <div class="legend-label" [class.legend-label-errors]="college.invalid && (college.dirty || college.touched) &&  college.errors?.['required']">College</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="college"
+                            formControlName="college"
+                            name="college"
+                            placeholder="College"
+                           
+                            [class.input-errors]="college.invalid && (college.dirty || college.touched) && college.errors?.['required']">
+
+                      <small *ngIf="college.invalid && (college.dirty || college.touched)">
+                          <small style="color: rgb(251, 96, 96)" *ngIf="college.errors?.['required']">College is required.</small>
+                    </small>
+                  </div>
+                  <div class="form-group save-btn">
+                    <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                    <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                    [disabled]="collegeForm.invalid || collegeForm.pristine">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.college !=null">
+            <div class="user-info-info">
+                <i class="bi bi-mortarboard-fill h4 intro-icons"></i> Studied at <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.college}}</span>
+                </div>
+                <div class="user-info-controls">
+                  <button><i class="bi bi-pen h5"></i></button>
+                </div>
+        </div>
+        <div class="user-info">
+            <div class="user-info-info">
+            <i class="bi bi-mortarboard-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+            <span *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.college != null">
+            Studied at <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.college}}</span>
+            </span>
+            <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.college !=null)">
+              No items to show
+              </span>
+            </div>
+            
+        </div>
+
+        <div class="accordion-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.highSchool==null)">
+            <button class="accordion" (click)="showForm($event)">
+                <i class="bi bi-plus-circle h5"></i> 
+                <span style="padding-left: 5px;">Add a highschool</span>
+  
+            </button>
+            <div class="panel">
+                <form
+                id="highschoolForm"
+                [formGroup]="highschoolForm"
+                (ngSubmit)="setHighschool()"
+                novalidate>
+                <div class="d-grid gap-2">
+                  <div class="d-grid gap-1 form-group pb-3  input-custom">
+                    <div class="legend-label" [class.legend-label-errors]="highschool.invalid && (highschool.dirty || highschool.touched) &&  highschool.errors?.['required']">Highschool</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="highschool"
+                            formControlName="highschool"
+                            name="highschool"
+                            placeholder="Highschool"
+                           
+                            [class.input-errors]="highschool.invalid && (highschool.dirty || highschool.touched) && highschool.errors?.['required']">
+
+                      <small *ngIf="highschool.invalid && (highschool.dirty || highschool.touched)">
+                          <small style="color: rgb(251, 96, 96)" *ngIf="highschool.errors?.['required']">Highschool is required.</small>
+                    </small>
+                  </div>
+                  <div class="form-group save-btn">
+                    <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                    <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                    [disabled]="highschoolForm.invalid || highschoolForm.pristine">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.highSchool !=null">
+            <div class="user-info-info">
+                <i class="bi bi-mortarboard-fill h4 intro-icons"></i> Went to <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.highSchool}}</span>
+                </div>
+                <div class="user-info-controls">
+                  <button><i class="bi bi-pen h5"></i></button>
+                </div>
+        </div>
+        <div class="user-info">
+            <div class="user-info-info">
+            <i class="bi bi-mortarboard-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+            <span *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.highSchool !=null">
+            Went to <span style="font-weight: bold;">{{(selectedUser$ | async).user_info.highSchool}}</span>
+            </span>
+            <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.highSchool !=null)">
+              No items to show
+            </span>
+            </div>
+            
+        </div>
+    </div>
+</div>

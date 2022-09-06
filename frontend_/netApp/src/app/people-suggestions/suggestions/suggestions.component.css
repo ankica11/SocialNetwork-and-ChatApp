@@ -1,0 +1,111 @@
+.results{
+    margin-top: 3%;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.result-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result{
+    background-color: white;
+    width: 50%;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+
+
+
+.profile-photo{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    
+}
+
+.search-profile-pic{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    
+}
+
+.search-profile-pic:hover{
+    filter: brightness(60%)
+}
+
+.profile-info{
+    flex: 3;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.mutuals{
+    padding-top: 15px;
+    display: flex;
+}
+
+.mutuals > button{
+  
+  
+    margin-right: -7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+
+}
+.mutuals > button > img{
+    width: 27px;
+    height: auto;
+    border: 3px solid white !important;
+
+}
+
+.action{
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
+.delete-btn{
+
+    background-color: #d0d0d0 !important;
+    border-radius: 5px;
+    color: black !important;
+    border: 0 !important;
+    font-size: small;
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+
+.confirm-btn{
+    
+    background-color: #f81ef1 !important;
+    border-radius: 5px;
+    color: white !important;
+    border: 0 !important;
+    font-size: small;
+    font-weight: bold;
+    text-align: center;
+  
+    
+}

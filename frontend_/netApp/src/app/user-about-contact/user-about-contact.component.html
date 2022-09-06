@@ -1,0 +1,646 @@
+<div class="contact">
+
+<div class="contact-section">
+<span>Contact info</span>
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.phone==null)">
+<button class="accordion" (click)="showForm($event)">
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add a mobile phone</span>
+      
+</button>
+<div class="panel">
+  <form
+                id="phoneForm"
+                [formGroup]="phoneForm"
+                (ngSubmit)="setPhone()"
+                novalidate>
+                <div class="d-grid gap-2">
+                  <div class="d-grid gap-1 form-group pb-3  input-custom">
+                    <div class="legend-label" [class.legend-label-errors]="phone.invalid && (phone.dirty || phone.touched) && (phone.errors?.['pattern'] || email.errors?.['required'])">Phone</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="phone"
+                            formControlName="phone"
+                            name="phone"
+                            placeholder="Phone number"
+                           
+                            [class.input-errors]="phone.invalid && (phone.dirty || phone.touched) && (phone.errors?.['pattern'] || email.errors?.['required'])">
+
+                      <small *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                        <small style="color: rgb(251, 96, 96)" *ngIf="phone.errors?.['pattern']">Phone is not valid.</small>
+                        <small style="color: rgb(251, 96, 96)" *ngIf="phone.errors?.['required']">Phone is required.</small>
+                    </small>
+                  </div>
+                  <div class="form-group save-btn">
+                    <button type="button " class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                    <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                    [disabled]="phoneForm.invalid || phoneForm.pristine">Save</button>
+                  </div>
+                </div>
+              </form>
+</div>
+</div>
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.phone !=null">
+  <div class="user-info-info">
+      <div>
+      <i class="bi bi-telephone-fill h4 intro-icons"></i> <span>{{(selectedUser$ | async).user_info.phone}}</span>
+      </div>
+      <small>Phone number</small>  
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.phone !=null">
+    <div>
+    <i class="bi bi-telephone-fill h4 intro-icons"></i> 
+  
+    <span>{{(selectedUser$ | async).user_info.phone}}</span>
+    </div>
+    <small>Phone number</small>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.phone !=null)">
+    <i class="bi bi-telephone-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+  
+</div>
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.email==null)">
+  <button class="accordion" (click)="showForm($event)">
+    <i class="bi bi-plus-circle h5"></i> 
+    <span style="padding-left: 5px;">Add a email address</span>
+        
+  </button>
+  <div class="panel">
+    <form
+                  id="emailForm"
+                  [formGroup]="emailForm"
+                  (ngSubmit)="setEmail()"
+                  novalidate>
+                  <div class="d-grid gap-2">
+                    <div class="d-grid gap-1 form-group pb-3  input-custom">
+                      <div class="legend-label" [class.legend-label-errors]="email.invalid && (email.dirty || email.touched) && (email.errors?.['email'] || email.errors?.['required'])">Website</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="email"
+                            formControlName="email"
+                            name="email"
+                            placeholder="Email"
+                           
+                            [class.input-errors]="email.invalid && (email.dirty || email.touched) && (email.errors?.['email'] || email.errors?.['required'])">
+
+                      <small *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <small style="color: rgb(251, 96, 96)" *ngIf="email.errors?.['email']">Email is not valid.</small>
+                        <small style="color: rgb(251, 96, 96)" *ngIf="email.errors?.['required']">Email is required.</small>
+                    </small>
+          
+                    </div>
+                    <div class="form-group save-btn">
+                      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+                      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+                      [disabled]="emailForm.invalid || emailForm.pristine">Save</button>
+                    </div>
+                  </div>
+                </form>
+  </div>
+  </div>
+  <div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.email !=null">
+    <div class="user-info-info">
+        <div>
+        <i class="bi bi-envelope-fill h4 intro-icons"></i> <span>{{(selectedUser$ | async).user_info.email}}</span>
+        </div>
+        <small>Email address</small>  
+      </div>
+        <div class="user-info-controls">
+          <button><i class="bi bi-pen h5"></i></button>
+        </div>
+  </div>
+  <div class="user-info">
+    <div class="user-info-info">
+      
+    <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.email !=null">
+      <div>
+      <i class="bi bi-envelope-fill h4 intro-icons"></i> 
+    
+      <span>{{(selectedUser$ | async).user_info.email}}</span>
+      </div>
+      <small>Email address</small>
+    </span>
+    
+    <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.email !=null)">
+      <i class="bi bi-envelope-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+    
+      No items to show
+    </span>
+    
+    </div>
+    
+  </div>
+
+</div>
+
+
+<div class="contact-section">
+<span>Websites and social links</span>
+
+<div class="acc-wrapper"  *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.website ==null)">
+<button class="accordion" (click)="showForm($event)"> 
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add a website</span>
+</button>
+<div class="panel">
+  <form
+      id="websitesForm"
+      [formGroup]="websitesForm"
+      (ngSubmit)="setWebsites()"
+  >
+  <div class="d-grid gap-2">
+    <div formArrayName="websites">
+      <div *ngFor="let website of websites.controls; let i=index">
+        
+          <div class="d-grid gap-1 form-group pb-3  input-custom" [formGroupName]="i">
+          <div class="legend-label" [class.legend-label-errors]="website.invalid && (website.dirty || website.touched) && website.get('website').errors?.['pattern']">Website</div>
+          <input type="text" formControlName="website" placeholder="Website" class="form-control" required
+          [class.input-errors]="website.invalid && (website.dirty || website.touched) && website.get('website').errors?.['pattern']">
+          <small *ngIf="website.invalid && (website.dirty || website.touched)"><small style="color: rgb(251, 96, 96)" *ngIf="website.get('website').errors?.['pattern']">Website format is not valid.</small></small>
+          </div>
+        
+
+      </div>
+    </div>
+    <!--Add new website-->
+    <div class="form-group add-btn">
+      <button type="button" class="btn btn-primary" (click)="addWebsite()">Add website</button>
+    </div>
+    <!--Save and cancel button-->
+    <div class="form-group save-btn">
+      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+      [disabled]="websitesForm.invalid || websitesForm.pristine">Save</button>
+    </div>
+
+  </div>
+
+  </form>
+  
+  
+</div> 
+</div>
+
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.website != null">
+  <div class="user-info-info">
+     <div *ngFor="let website of (selectedUser$ | async).user_info.website" class="pb-2">
+      <div>
+      <i class="bi bi-link-45deg h4 intro-icons"></i> <span><a href="http://{{website}}" target="_blank">{{website}}</a></span>
+      </div>
+      <small>Website</small>  
+      </div>
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.website !=null">
+    <div *ngFor="let website of (selectedUser$ | async).user_info.website" class="pb-2">
+    <div>
+    <i class="bi bi-link-45deg h4 intro-icons"></i> 
+  
+    <span><a href="http://{{website}}" target="_blank">{{website}}</a></span>
+    </div>
+    <small>Website</small>
+    </div>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.website !=null)">
+    <i class="bi bi-link-45deg h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.socialLinks==null)">
+<button class="accordion" (click)="showForm($event)"> 
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add a social link</span>
+</button>
+<div class="panel">
+  <form
+      id="socialLinksForm"
+      [formGroup]="socialLinksForm"
+      (ngSubmit)="setSocialLinks()"
+  >
+  <div class="d-grid gap-2">
+    
+    <div formArrayName="socialLinks">
+      <div *ngFor="let link of socialLinks.controls; let i=index">
+        <div [formGroupName]="i" class="form-group d-flex mb-2">
+          
+          <div class="d-grid gap-1 mb-3  input-custom" style="flex: 3; margin-right: 5px;">
+            <div class="legend-label" [class.legend-label-errors]="link.invalid && (link.dirty || link.touched) && link.get('socialLink').errors?.['required']">Username</div>
+            <input type="text" formControlName="socialLink" placeholder="Social media username" class="form-control" required
+            [class.input-errors]="link.invalid && (link.dirty || link.touched) && link.get('socialLink').errors?.['required']">
+            <small *ngIf="link.invalid && (link.dirty || link.touched)"><small style="color: rgb(251, 96, 96)" *ngIf="link.get('socialLink').errors?.['required']">Username is required.</small></small>
+            </div>
+          <select class="form-control" formControlName="socialType" style="flex:1; max-height: 38px; min-width: fit-content;">
+            <option value="instagram" selected>Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="twitter">Twitter</option>
+            <option value="tiktok">TikTok</option>
+            <option value="youtube">YouTube</option>
+            <option value="snapchat">Snapchat</option>
+            <option value="pinterest">Pinterest</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+   
+    <!--Add new website-->
+    <div class="form-group add-btn">
+      <button type="button" class="btn btn-primary" (click)="addSocialLink()">Add social link</button>
+    </div>
+    <!--Save and cancel button-->
+    <div class="form-group save-btn">
+      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+      [disabled]="socialLinksForm.invalid || socialLinksForm.pristine">Save</button>
+    </div>
+
+  </div>
+
+  </form>
+  
+ 
+</div> 
+</div>
+
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.socialLinks != null">
+  <div class="user-info-info">
+     <div *ngFor="let link of socialLinksArray" class="pb-2" [ngSwitch]="link.socialType">
+      <div>
+      <i class="bi bi-instagram h4 intro-icons" *ngSwitchCase="'instagram'"></i> <span *ngSwitchCase="'instagram'"><a *ngSwitchCase="'instagram'" href="https://www.instagram.com/{{link.socialLink}}" target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-twitter h4 intro-icons" *ngSwitchCase="'twitter'"></i> <span *ngSwitchCase="'twitter'"><a href="https://www.twitter.com/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-facebook h4 intro-icons" *ngSwitchCase="'facebook'"></i> <span><a *ngSwitchCase="'facebook'" href="https://facebook/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-tiktok h4 intro-icons" *ngSwitchCase="'tiktok'"></i> <span><a *ngSwitchCase="'tiktok'" href="https://www.tiktok.com/@{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-youtube h4 intro-icons" *ngSwitchCase="'youtube'"></i> <span *ngSwitchCase="'youtube'"><a *ngSwitchCase="'youtube'" href="https://www.youtube.com/user/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-snapchat h4 intro-icons" *ngSwitchCase="'snapchat'"></i> <span *ngSwitchCase="'snapchat'"><a href="https://www.snapchat.com/add/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-pinterest h4 intro-icons" *ngSwitchCase="'pinterest'"></i> <span *ngSwitchCase="'pinterest'"><a href="https://www.pinterest.com/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      
+    </div>
+      <small>{{link.socialType}}</small>  
+      </div>
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.socialLinks != null">
+    <div *ngFor="let link of socialLinksArray" class="pb-2" [ngSwitch]="link.socialType">
+    <div>
+      <i class="bi bi-instagram h4 intro-icons" *ngSwitchCase="'instagram'"></i> <span *ngSwitchCase="'instagram'"><a *ngSwitchCase="'instagram'" href="https://www.instagram.com/{{link.socialLink}}" target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-twitter h4 intro-icons" *ngSwitchCase="'twitter'"></i> <span *ngSwitchCase="'twitter'"><a href="https://www.twitter.com/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-facebook h4 intro-icons" *ngSwitchCase="'facebook'"></i> <span><a *ngSwitchCase="'facebook'" href="https://facebook/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-tiktok h4 intro-icons" *ngSwitchCase="'tiktok'"></i> <span><a *ngSwitchCase="'tiktok'" href="https://www.tiktok.com/@{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-youtube h4 intro-icons" *ngSwitchCase="'youtube'"></i> <span *ngSwitchCase="'youtube'"><a *ngSwitchCase="'youtube'" href="https://www.youtube.com/user/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-snapchat h4 intro-icons" *ngSwitchCase="'snapchat'"></i> <span *ngSwitchCase="'snapchat'"><a href="https://www.snapchat.com/add/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      <i class="bi bi-pinterest h4 intro-icons" *ngSwitchCase="'pinterest'"></i> <span *ngSwitchCase="'pinterest'"><a href="https://www.pinterest.com/{{link.socialLink}}"  target="_blank">{{link.socialLink}}</a></span>
+      
+    </div>
+    <small>{{link.socialType}}</small>
+    </div>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.socialLinks!=null)">
+    <i class="bi bi-link-45deg h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+  
+</div>
+
+
+</div>
+
+<div class="contact-section">
+<span>Basic info</span>
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.language==null)">
+<button class="accordion" (click)="showForm($event)"> 
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add a language</span>
+</button>
+<div class="panel">
+  <form
+  id="languageForm"
+  [formGroup]="languageForm"
+  (ngSubmit)="setLanguage()"
+  novalidate>
+  <div class="d-grid gap-2">
+    <div class="d-grid gap-1 form-group pb-3  input-custom">
+      <div class="legend-label" [class.legend-label-errors]="language.invalid && (language.dirty || language.touched) && language.errors?.['required']">Language</div>
+          
+                      <input type="text" 
+                            class="form-control"
+                            id="language"
+                            formControlName="language"
+                            name="language"
+                            placeholder="Language"
+                           
+                            [class.input-errors]="language.invalid && (language.dirty || language.touched) && email.errors?.['required']">
+
+                      <small *ngIf="language.invalid && (language.dirty || language.touched)">
+                        
+                        <small style="color: rgb(251, 96, 96)" *ngIf="language.errors?.['required']">Language is required.</small>
+                    </small>
+    </div>
+    <div class="form-group save-btn">
+      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+      [disabled]="languageForm.invalid || languageForm.pristine">Save</button>
+    </div>
+  </div>
+</form>
+</div> 
+</div>
+
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.language !=null">
+  <div class="user-info-info">
+      <div>
+      <i class="bi bi-translate h4 intro-icons"></i> <span>{{(selectedUser$ | async).user_info.language}}</span>
+      </div>
+      <small>Language</small>  
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.language !=null">
+    <div>
+    <i class="bi bi-translate h4 intro-icons"></i> 
+  
+    <span>{{(selectedUser$ | async).user_info.language}}</span>
+    </div>
+    <small>Language</small>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.language !=null)">
+    <i class="bi bi-translate h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+  
+</div>
+
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.interestedIn==null)">
+<button class="accordion" (click)="showForm($event)"> 
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add who you're interested in</span>
+</button>
+<div class="panel">
+  <form
+  id="interestedInForm"
+  [formGroup]="interestedInForm"
+  (ngSubmit)="setInterestedIn()"
+  novalidate>
+  <div class="d-grid gap-2">
+    <div class="form-group">
+      
+      <select class="form-control" formControlName="interestedIn" id="interestedIn">
+        <option value="men" selected>Men</option>
+        <option value="women">Women</option>
+     
+        
+      </select>
+    </div>
+    <div class="form-group save-btn">
+      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+      [disabled]="interestedInForm.invalid || interestedInForm.pristine">Save</button>
+    </div>
+  </div>
+</form>
+</div> 
+</div>
+
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.interestedIn !=null">
+  <div class="user-info-info">
+      <div>
+      <i class="bi bi-gender-male h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.interestedIn=='men'"></i>
+      <span *ngIf="(selectedUser$ | async).user_info.interestedIn=='men'">Men</span>
+      <i class="bi bi-gender-female h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.interestedIn=='women'"></i>
+       <span *ngIf="(selectedUser$ | async).user_info.interestedIn=='women'">Women</span>
+      </div>
+      <small>Interested in</small>  
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.interestedIn !=null">
+    <div>
+      <i class="bi bi-gender-male h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.interestedIn=='men'"></i>
+      <span *ngIf="(selectedUser$ | async).user_info.interestedIn=='men'">Men</span>
+      <i class="bi bi-gender-female h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.interestedIn=='women'"></i>
+       <span *ngIf="(selectedUser$ | async).user_info.interestedIn=='women'">Women</span>
+    </div>
+    <small>Interested in</small>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.interestedIn !=null)">
+    <i class="bi bi-gender-male h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+
+</div>
+  
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.gender==null)">
+<button class="accordion" (click)="showForm($event)"> 
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add a gender</span>
+</button>
+<div class="panel">
+  <form
+  id="genderForm"
+  [formGroup]="genderForm"
+  (ngSubmit)="setGender()"
+  novalidate>
+  <div class="d-grid gap-2">
+    <div class="form-group">
+      
+      <select class="form-control" formControlName="gender" id="gender">
+        <option value="male" selected>Male</option>
+        <option value="female">Female</option>
+     
+        
+      </select>
+    </div>
+    <div class="form-group save-btn">
+      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+      [disabled]="genderForm.invalid || genderForm.pristine">Save</button>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.gender !=null">
+  <div class="user-info-info">
+      <div>
+      <i class="bi bi-gender-male h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.gender=='male'"></i>
+      <span *ngIf="(selectedUser$ | async).user_info.gender=='male'">Male</span>
+      <i class="bi bi-gender-female h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.gender=='female'"></i>
+       <span *ngIf="(selectedUser$ | async).user_info.gender=='female'">Female</span>
+      </div>
+      <small>Gender</small>  
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.gender !=null">
+    <div>
+      <i class="bi bi-gender-male h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.gender=='male'"></i>
+      <span *ngIf="(selectedUser$ | async).user_info.interestedIn=='male'">Male</span>
+      <i class="bi bi-gender-female h4 intro-icons" *ngIf="(selectedUser$ | async).user_info.gender=='female'"></i>
+       <span *ngIf="(selectedUser$ | async).user_info.gender=='female'">Female</span>
+    </div>
+    <small>Gender</small>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.gender !=null)">
+    <i class="bi bi-gender-male h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+
+</div>
+
+
+<div class="acc-wrapper" *ngIf="(myProfileMode$ | async)==true && ((selectedUser$ | async).user_info==null || (selectedUser$ | async).user_info.birthDate==null)">
+<button class="accordion" (click)="showForm($event)"> 
+  <i class="bi bi-plus-circle h5"></i> 
+  <span style="padding-left: 5px;">Add a birth date</span>
+</button>
+<div class="panel">
+  <form
+  id="birthDateForm"
+  [formGroup]="birthDateForm"
+  (ngSubmit)="setBirthDate()"
+  novalidate>
+  <div class="d-grid gap-2">
+    <div class="d-grid gap-1 form-group pb-3  input-custom">
+      
+      <div class="legend-label" [class.legend-label-errors]="birthDate.invalid && (birthDate.dirty || birthDate.touched) && birthDate.errors?.['required']">Birthday</div>
+          
+                      <input type="date"
+                            class="form-control"
+                            id="birthDate"
+                            formControlName="birthDate"
+                            name="birthDate"
+                            placeholder="Birthday"
+                           
+                            [class.input-errors]="birthDate.invalid && (birthDate.dirty || birthDate.touched) && birthDate.errors?.['required']">
+
+                      <small *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)">
+                        
+                        <small style="color: rgb(251, 96, 96)" *ngIf="birthDate.errors?.['required']">Birthdate is required.</small>
+                    </small>
+          
+      
+        
+    </div>
+    <div class="form-group save-btn">
+      <button type="button" class="btn btn-primary cancel-btn" (click)="cancel($event)">Cancel</button>
+      <button class="btn btn-primary save-btn-btn" type="submit" id="submitButton" role="submit"
+      [disabled]="birthDateForm.invalid || birthDateForm.pristine">Save</button>
+    </div>
+  </div>
+</form>
+</div> 
+</div>
+
+<div class="user-info" *ngIf="(myProfileMode$ | async)==true && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.birthDate !=null">
+  <div class="user-info-info">
+      <div>
+      <i class="bi bi-calendar-date-fill h4 intro-icons"></i>
+      <span>{{(selectedUser$ | async).user_info.birthDate | date: 'longDate' }}</span>
+      
+      </div>
+      <small>Birthday</small>  
+    </div>
+      <div class="user-info-controls">
+        <button><i class="bi bi-pen h5"></i></button>
+      </div>
+</div>
+<div class="user-info">
+  <div class="user-info-info">
+    
+  <span class="user-info-info-info" *ngIf="(myProfileMode$ | async)==false && (selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.birthDate !=null">
+    <div>
+      <i class="bi bi-calendar-date-fill h4 intro-icons"></i>
+      <span>{{(selectedUser$ | async).user_info.birthDate | date: 'longDate' }}</span>
+    </div>
+    <small>Birthday</small>
+  </span>
+  
+  <span *ngIf="(myProfileMode$ | async)==false && !((selectedUser$ | async).user_info != null && (selectedUser$ | async).user_info.gender !=null)">
+    <i class="bi bi-calendar-date-fill h4 intro-icons" *ngIf="(myProfileMode$ | async)==false"></i> 
+  
+    No items to show
+  </span>
+  
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+</div>

@@ -1,0 +1,172 @@
+.center-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+}
+
+
+.login{
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  
+  
+
+}
+
+.col-rad{
+ 
+  border-radius: 30px;
+  
+  
+}
+
+.row-shadow{
+  box-shadow: 12px 12px 22px grey;
+
+}
+
+.row-form{
+  background-color: white;
+ 
+
+}
+
+.equal {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+@media (min-width: 576px) {
+  .row.equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.login{
+  background-color: #E5DBDB;
+  
+}
+
+.card{
+    opacity: 0.1;
+}
+
+
+.transparent-input{
+  background-color:transparent !important;
+  border: 0 !important;
+  
+  
+}
+h2{
+color: darkgray;
+text-align: center;
+font-family: serif;
+}
+
+h3{
+  font-family: serif;
+}
+
+h5 {
+color: black;
+text-align: center;
+font-family: serif;
+font-size: smaller;
+width: 100%; 
+text-align: center; 
+border-bottom: 1px solid black; 
+line-height: 0.1rem;
+margin: 1.5rem 0 2rem 0; 
+opacity: 0.7;
+} 
+
+h5 span { 
+ background:white; 
+ padding:0 0.5rem; 
+}
+
+.btn-login{
+border: 2px solid #F041E5;
+background-color: white;
+color: black;
+font-weight: 500;
+}
+
+.form-check-input:checked{
+background-color:#F041E5;
+}
+
+.form-control:focus{
+border-color: #F041E5;
+box-shadow: none
+}
+
+.input-wrap{
+  
+  border-bottom: 1px solid black !important;
+  display: flex;
+  flex-direction: row;
+}
+
+.input-icon{
+  justify-content: center;
+  align-self: center;
+  padding-right: 5px;
+}
+
+.input-wrap:focus-within{
+  border-color: #F041E5;
+  box-shadow: inset 1px 1px rgba(240, 65, 229, 0.75), 0px 0px 10px rgba(240, 65, 229, 0.6);
+  opacity: 1 !important;
+  color: black;
+
+}
+
+.input-errors{
+  border-bottom: 2px solid red !important;
+}
+.input-ok{
+  border-bottom: 2px solid green !important;
+}
+
+.form-control::placeholder{
+opacity: 0.5 !important;
+color: black;
+
+}
+
+
+
+a{
+  color: #F041E5;   
+  text-decoration: none;
+}
+
+a:hover{
+  color: mediumblue !important;
+}
+
+button:hover{
+  background-color: #F041E5;
+  color: white;
+}
+
+.errors{
+  text-align: left;
+  font-size: 0.8rem;
+
+}
+
+.form-check{
+  display: flex;
+  align-items: flex-start;
+}
+
+.fix-check{
+  text-align: left !important;
+}

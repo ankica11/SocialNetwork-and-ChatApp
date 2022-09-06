@@ -1,0 +1,37 @@
+<div class="results">
+
+    <div class="result-wrapper" *ngFor="let user of suggestedPeople">
+        <div class="result" >
+            <div class="profile-photo">
+                
+                <img [routerLink]="['/start/profile', user.username]" role="button" [src]="user.avatar" class="rounded-circle search-profile-pic">
+                
+            </div>
+            <div class="profile-info">
+              <span style="font-weight: bold;"  [routerLink]="['/start/profile', user.username]" role="button">{{user.name}}</span> 
+              
+                <div class="mutuals">
+                    <button class="rounded-circle" style="z-index: 3 !important;"><img src="https://randomuser.me/api/portraits/women/11.jpg" class="rounded-circle"></button>
+                    
+                    <button class="rounded-circle" style="z-index: 2 !important;"><img src="https://randomuser.me/api/portraits/women/7.jpg" class="rounded-circle"></button>
+                    
+                    <button class="rounded-circle" style="z-index: 1 !important;"><img  src="https://randomuser.me/api/portraits/men/5.jpg" class="rounded-circle"></button>
+
+                    <span style="padding-left: 10px;"><small style="color: grey">3 mutual friends</small></span>
+      
+                </div>
+            </div>
+            <div class="action">
+                <button class="btn btn-primary confirm-btn" (click)="addFriend(user)">
+                    <i class="bi bi-person-plus-fill h6"></i>
+                    Add Friend</button>
+                <button class="btn btn-primary delete-btn" (click)="removeSuggestion(user)">Remove</button>
+             
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
