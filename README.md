@@ -9,7 +9,6 @@ Facebook And Messenger clone app using Angular, Bootstrap for frontend and Node.
 ![2022-08-13](https://user-images.githubusercontent.com/76231958/192348958-9933d0a7-2a07-4ba2-944d-2b74a4d2f056.png)
 
 ![2022-08-13 (2)](https://user-images.githubusercontent.com/76231958/192348826-7eca67b7-cd89-4131-891f-4173f64e7dc6.png)
-![2022-08-12 (1)](https://user-images.githubusercontent.com/76231958/192349039-94eb1ce1-41b4-4c32-a4c7-adff2bf248bd.png)
 ![2022-08-05 (2)](https://user-images.githubusercontent.com/76231958/192351286-53301bdc-6754-4427-8296-8aa00b1b69d1.png)
 
 ![2022-08-28 (3)](https://user-images.githubusercontent.com/76231958/192348349-ec011799-d1b1-4ea0-9db0-63f2938d616f.png)
