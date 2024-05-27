@@ -31,6 +31,7 @@
     "angularx-social-login": "^4.1.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "follow-redirects": "^1.15.6",
     "jquery": "^3.7.1",
     "mdb-angular-ui-kit": "^6.0.0",
     "mdb-ui-kit": "^7.3.0",
