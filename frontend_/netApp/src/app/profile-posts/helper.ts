@@ -1,4 +1,3 @@
-import { LEADING_TRIVIA_CHARS } from "@angular/compiler/src/render3/view/template";
 import { User } from "../models/user";
 import { Status } from "../_state/people/friends.status.reducer";
 
